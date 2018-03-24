@@ -1,0 +1,580 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F5961A0720668B73005151EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5961A0620668B73005151EA /* AppDelegate.swift */; };
+		F5961A0920668B73005151EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5961A0820668B73005151EA /* ViewController.swift */; };
+		F5961A0C20668B73005151EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5961A0A20668B73005151EA /* Main.storyboard */; };
+		F5961A0F20668B73005151EA /* Cram_Final_Version.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5961A0D20668B73005151EA /* Cram_Final_Version.xcdatamodeld */; };
+		F5961A1120668B73005151EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5961A1020668B73005151EA /* Assets.xcassets */; };
+		F5961A1420668B73005151EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5961A1220668B73005151EA /* LaunchScreen.storyboard */; };
+		F5961A1F20668B73005151EA /* Cram_Final_VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5961A1E20668B73005151EA /* Cram_Final_VersionTests.swift */; };
+		F5961A2A20668B73005151EA /* Cram_Final_VersionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5961A2920668B73005151EA /* Cram_Final_VersionUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F5961A1B20668B73005151EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F59619FB20668B73005151EA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F5961A0220668B73005151EA;
+			remoteInfo = "Cram Final Version";
+		};
+		F5961A2620668B73005151EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F59619FB20668B73005151EA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F5961A0220668B73005151EA;
+			remoteInfo = "Cram Final Version";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F5961A0320668B73005151EA /* Cram Final Version.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cram Final Version.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5961A0620668B73005151EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F5961A0820668B73005151EA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F5961A0B20668B73005151EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F5961A0E20668B73005151EA /* Cram_Final_Version.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cram_Final_Version.xcdatamodel; sourceTree = "<group>"; };
+		F5961A1020668B73005151EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F5961A1320668B73005151EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F5961A1520668B73005151EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5961A1A20668B73005151EA /* Cram Final VersionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cram Final VersionTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5961A1E20668B73005151EA /* Cram_Final_VersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cram_Final_VersionTests.swift; sourceTree = "<group>"; };
+		F5961A2020668B73005151EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5961A2520668B73005151EA /* Cram Final VersionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cram Final VersionUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5961A2920668B73005151EA /* Cram_Final_VersionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cram_Final_VersionUITests.swift; sourceTree = "<group>"; };
+		F5961A2B20668B73005151EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F5961A0020668B73005151EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5961A1720668B73005151EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5961A2220668B73005151EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F59619FA20668B73005151EA = {
+			isa = PBXGroup;
+			children = (
+				F5961A0520668B73005151EA /* Cram Final Version */,
+				F5961A1D20668B73005151EA /* Cram Final VersionTests */,
+				F5961A2820668B73005151EA /* Cram Final VersionUITests */,
+				F5961A0420668B73005151EA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F5961A0420668B73005151EA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F5961A0320668B73005151EA /* Cram Final Version.app */,
+				F5961A1A20668B73005151EA /* Cram Final VersionTests.xctest */,
+				F5961A2520668B73005151EA /* Cram Final VersionUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F5961A0520668B73005151EA /* Cram Final Version */ = {
+			isa = PBXGroup;
+			children = (
+				F5961A0620668B73005151EA /* AppDelegate.swift */,
+				F5961A0820668B73005151EA /* ViewController.swift */,
+				F5961A0A20668B73005151EA /* Main.storyboard */,
+				F5961A1020668B73005151EA /* Assets.xcassets */,
+				F5961A1220668B73005151EA /* LaunchScreen.storyboard */,
+				F5961A1520668B73005151EA /* Info.plist */,
+				F5961A0D20668B73005151EA /* Cram_Final_Version.xcdatamodeld */,
+			);
+			path = "Cram Final Version";
+			sourceTree = "<group>";
+		};
+		F5961A1D20668B73005151EA /* Cram Final VersionTests */ = {
+			isa = PBXGroup;
+			children = (
+				F5961A1E20668B73005151EA /* Cram_Final_VersionTests.swift */,
+				F5961A2020668B73005151EA /* Info.plist */,
+			);
+			path = "Cram Final VersionTests";
+			sourceTree = "<group>";
+		};
+		F5961A2820668B73005151EA /* Cram Final VersionUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F5961A2920668B73005151EA /* Cram_Final_VersionUITests.swift */,
+				F5961A2B20668B73005151EA /* Info.plist */,
+			);
+			path = "Cram Final VersionUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F5961A0220668B73005151EA /* Cram Final Version */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F5961A2E20668B73005151EA /* Build configuration list for PBXNativeTarget "Cram Final Version" */;
+			buildPhases = (
+				F59619FF20668B73005151EA /* Sources */,
+				F5961A0020668B73005151EA /* Frameworks */,
+				F5961A0120668B73005151EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Cram Final Version";
+			productName = "Cram Final Version";
+			productReference = F5961A0320668B73005151EA /* Cram Final Version.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F5961A1920668B73005151EA /* Cram Final VersionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F5961A3120668B73005151EA /* Build configuration list for PBXNativeTarget "Cram Final VersionTests" */;
+			buildPhases = (
+				F5961A1620668B73005151EA /* Sources */,
+				F5961A1720668B73005151EA /* Frameworks */,
+				F5961A1820668B73005151EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F5961A1C20668B73005151EA /* PBXTargetDependency */,
+			);
+			name = "Cram Final VersionTests";
+			productName = "Cram Final VersionTests";
+			productReference = F5961A1A20668B73005151EA /* Cram Final VersionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F5961A2420668B73005151EA /* Cram Final VersionUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F5961A3420668B73005151EA /* Build configuration list for PBXNativeTarget "Cram Final VersionUITests" */;
+			buildPhases = (
+				F5961A2120668B73005151EA /* Sources */,
+				F5961A2220668B73005151EA /* Frameworks */,
+				F5961A2320668B73005151EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F5961A2720668B73005151EA /* PBXTargetDependency */,
+			);
+			name = "Cram Final VersionUITests";
+			productName = "Cram Final VersionUITests";
+			productReference = F5961A2520668B73005151EA /* Cram Final VersionUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F59619FB20668B73005151EA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Aaron Speakman";
+				TargetAttributes = {
+					F5961A0220668B73005151EA = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					F5961A1920668B73005151EA = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F5961A0220668B73005151EA;
+					};
+					F5961A2420668B73005151EA = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F5961A0220668B73005151EA;
+					};
+				};
+			};
+			buildConfigurationList = F59619FE20668B73005151EA /* Build configuration list for PBXProject "Cram Final Version" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F59619FA20668B73005151EA;
+			productRefGroup = F5961A0420668B73005151EA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F5961A0220668B73005151EA /* Cram Final Version */,
+				F5961A1920668B73005151EA /* Cram Final VersionTests */,
+				F5961A2420668B73005151EA /* Cram Final VersionUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F5961A0120668B73005151EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5961A1420668B73005151EA /* LaunchScreen.storyboard in Resources */,
+				F5961A1120668B73005151EA /* Assets.xcassets in Resources */,
+				F5961A0C20668B73005151EA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5961A1820668B73005151EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5961A2320668B73005151EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F59619FF20668B73005151EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5961A0F20668B73005151EA /* Cram_Final_Version.xcdatamodeld in Sources */,
+				F5961A0920668B73005151EA /* ViewController.swift in Sources */,
+				F5961A0720668B73005151EA /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5961A1620668B73005151EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5961A1F20668B73005151EA /* Cram_Final_VersionTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5961A2120668B73005151EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5961A2A20668B73005151EA /* Cram_Final_VersionUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F5961A1C20668B73005151EA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F5961A0220668B73005151EA /* Cram Final Version */;
+			targetProxy = F5961A1B20668B73005151EA /* PBXContainerItemProxy */;
+		};
+		F5961A2720668B73005151EA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F5961A0220668B73005151EA /* Cram Final Version */;
+			targetProxy = F5961A2620668B73005151EA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F5961A0A20668B73005151EA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5961A0B20668B73005151EA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F5961A1220668B73005151EA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5961A1320668B73005151EA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F5961A2C20668B73005151EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F5961A2D20668B73005151EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F5961A2F20668B73005151EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UBWPYUEANY;
+				INFOPLIST_FILE = "Cram Final Version/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Capstone.Cram-Final-Version";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F5961A3020668B73005151EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UBWPYUEANY;
+				INFOPLIST_FILE = "Cram Final Version/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Capstone.Cram-Final-Version";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F5961A3220668B73005151EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UBWPYUEANY;
+				INFOPLIST_FILE = "Cram Final VersionTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Capstone.Cram-Final-VersionTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cram Final Version.app/Cram Final Version";
+			};
+			name = Debug;
+		};
+		F5961A3320668B73005151EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UBWPYUEANY;
+				INFOPLIST_FILE = "Cram Final VersionTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Capstone.Cram-Final-VersionTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cram Final Version.app/Cram Final Version";
+			};
+			name = Release;
+		};
+		F5961A3520668B73005151EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UBWPYUEANY;
+				INFOPLIST_FILE = "Cram Final VersionUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Capstone.Cram-Final-VersionUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Cram Final Version";
+			};
+			name = Debug;
+		};
+		F5961A3620668B73005151EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UBWPYUEANY;
+				INFOPLIST_FILE = "Cram Final VersionUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Capstone.Cram-Final-VersionUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Cram Final Version";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F59619FE20668B73005151EA /* Build configuration list for PBXProject "Cram Final Version" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5961A2C20668B73005151EA /* Debug */,
+				F5961A2D20668B73005151EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F5961A2E20668B73005151EA /* Build configuration list for PBXNativeTarget "Cram Final Version" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5961A2F20668B73005151EA /* Debug */,
+				F5961A3020668B73005151EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F5961A3120668B73005151EA /* Build configuration list for PBXNativeTarget "Cram Final VersionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5961A3220668B73005151EA /* Debug */,
+				F5961A3320668B73005151EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F5961A3420668B73005151EA /* Build configuration list for PBXNativeTarget "Cram Final VersionUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5961A3520668B73005151EA /* Debug */,
+				F5961A3620668B73005151EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F5961A0D20668B73005151EA /* Cram_Final_Version.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F5961A0E20668B73005151EA /* Cram_Final_Version.xcdatamodel */,
+			);
+			currentVersion = F5961A0E20668B73005151EA /* Cram_Final_Version.xcdatamodel */;
+			path = Cram_Final_Version.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = F59619FB20668B73005151EA /* Project object */;
+}
