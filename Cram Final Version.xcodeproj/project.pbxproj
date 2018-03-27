@@ -7,14 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AB49FF485C1A87E70BC16DE /* Pods_Cram_Final_VersionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6AFA9D4FBBE33485DC90EAF /* Pods_Cram_Final_VersionTests.framework */; };
+		78845CB9FC33A11C839DDE48 /* Pods_Cram_Final_VersionUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E8ABE8E9C7F6C113BE0CF2F /* Pods_Cram_Final_VersionUITests.framework */; };
+		8BA335CA7CEA9CC2CE89A8A4 /* Pods_Cram_Final_Version.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C12421C1C7469532B5D482 /* Pods_Cram_Final_Version.framework */; };
+		F55D6D13206AC09800234187 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F55D6D12206AC09800234187 /* MapKit.framework */; };
+		F55D6D15206AC24900234187 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F55D6D14206AC24900234187 /* GoogleService-Info.plist */; };
 		F5961A0720668B73005151EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5961A0620668B73005151EA /* AppDelegate.swift */; };
-		F5961A0920668B73005151EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5961A0820668B73005151EA /* ViewController.swift */; };
+		F5961A0920668B73005151EA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5961A0820668B73005151EA /* LoginViewController.swift */; };
 		F5961A0C20668B73005151EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5961A0A20668B73005151EA /* Main.storyboard */; };
 		F5961A0F20668B73005151EA /* Cram_Final_Version.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5961A0D20668B73005151EA /* Cram_Final_Version.xcdatamodeld */; };
 		F5961A1120668B73005151EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5961A1020668B73005151EA /* Assets.xcassets */; };
 		F5961A1420668B73005151EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5961A1220668B73005151EA /* LaunchScreen.storyboard */; };
 		F5961A1F20668B73005151EA /* Cram_Final_VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5961A1E20668B73005151EA /* Cram_Final_VersionTests.swift */; };
 		F5961A2A20668B73005151EA /* Cram_Final_VersionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5961A2920668B73005151EA /* Cram_Final_VersionUITests.swift */; };
+		F5CAF537206A9ADC00BC8E39 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAF536206A9ADB00BC8E39 /* user.swift */; };
+		F5CAF539206A9C3B00BC8E39 /* course.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAF538206A9C3B00BC8E39 /* course.swift */; };
+		F5CAF53B206A9E0400BC8E39 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAF53A206A9E0400BC8E39 /* MapViewController.swift */; };
+		F5CAF53D206A9E2600BC8E39 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAF53C206A9E2600BC8E39 /* ListTableViewController.swift */; };
+		F5CAF53F206A9E4300BC8E39 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAF53E206A9E4300BC8E39 /* ProfileViewController.swift */; };
+		F5CAF541206A9E7000BC8E39 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAF540206A9E7000BC8E39 /* ChatTableViewController.swift */; };
+		F5CAF543206A9F8600BC8E39 /* studyGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAF542206A9F8600BC8E39 /* studyGroup.swift */; };
+		F5CAF547206AAA5200BC8E39 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAF546206AAA5200BC8E39 /* SignUpViewController.swift */; };
+		F5EB2E48206AD9F40010EDAE /* ProfileSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EB2E47206AD9F40010EDAE /* ProfileSetupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +49,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03371BA59C380417D5F64A40 /* Pods-Cram Final VersionUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cram Final VersionUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cram Final VersionUITests/Pods-Cram Final VersionUITests.release.xcconfig"; sourceTree = "<group>"; };
+		16C12421C1C7469532B5D482 /* Pods_Cram_Final_Version.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cram_Final_Version.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E8ABE8E9C7F6C113BE0CF2F /* Pods_Cram_Final_VersionUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cram_Final_VersionUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		66074E90A0BA377925A676E6 /* Pods-Cram Final VersionTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cram Final VersionTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cram Final VersionTests/Pods-Cram Final VersionTests.debug.xcconfig"; sourceTree = "<group>"; };
+		69445B359F3BBFF10E155338 /* Pods-Cram Final VersionUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cram Final VersionUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cram Final VersionUITests/Pods-Cram Final VersionUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		76BB8263B0D5E0BB12DE73CB /* Pods-Cram Final VersionTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cram Final VersionTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cram Final VersionTests/Pods-Cram Final VersionTests.release.xcconfig"; sourceTree = "<group>"; };
+		B6AFA9D4FBBE33485DC90EAF /* Pods_Cram_Final_VersionTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cram_Final_VersionTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB6E382E6C669583F8A0F933 /* Pods-Cram Final Version.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cram Final Version.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cram Final Version/Pods-Cram Final Version.release.xcconfig"; sourceTree = "<group>"; };
+		E185B0C49F09B48E89020208 /* Pods-Cram Final Version.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cram Final Version.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cram Final Version/Pods-Cram Final Version.debug.xcconfig"; sourceTree = "<group>"; };
+		F55D6D12206AC09800234187 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		F55D6D14206AC24900234187 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F5961A0320668B73005151EA /* Cram Final Version.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cram Final Version.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5961A0620668B73005151EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F5961A0820668B73005151EA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F5961A0820668B73005151EA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F5961A0B20668B73005151EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F5961A0E20668B73005151EA /* Cram_Final_Version.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cram_Final_Version.xcdatamodel; sourceTree = "<group>"; };
 		F5961A1020668B73005151EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +74,15 @@
 		F5961A2520668B73005151EA /* Cram Final VersionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cram Final VersionUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5961A2920668B73005151EA /* Cram_Final_VersionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cram_Final_VersionUITests.swift; sourceTree = "<group>"; };
 		F5961A2B20668B73005151EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5CAF536206A9ADB00BC8E39 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
+		F5CAF538206A9C3B00BC8E39 /* course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = course.swift; sourceTree = "<group>"; };
+		F5CAF53A206A9E0400BC8E39 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		F5CAF53C206A9E2600BC8E39 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
+		F5CAF53E206A9E4300BC8E39 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F5CAF540206A9E7000BC8E39 /* ChatTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
+		F5CAF542206A9F8600BC8E39 /* studyGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studyGroup.swift; sourceTree = "<group>"; };
+		F5CAF546206AAA5200BC8E39 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		F5EB2E47206AD9F40010EDAE /* ProfileSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +90,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F55D6D13206AC09800234187 /* MapKit.framework in Frameworks */,
+				8BA335CA7CEA9CC2CE89A8A4 /* Pods_Cram_Final_Version.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AB49FF485C1A87E70BC16DE /* Pods_Cram_Final_VersionTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +107,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78845CB9FC33A11C839DDE48 /* Pods_Cram_Final_VersionUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8292A55FB2C8DEDF65E4FDF5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E185B0C49F09B48E89020208 /* Pods-Cram Final Version.debug.xcconfig */,
+				CB6E382E6C669583F8A0F933 /* Pods-Cram Final Version.release.xcconfig */,
+				66074E90A0BA377925A676E6 /* Pods-Cram Final VersionTests.debug.xcconfig */,
+				76BB8263B0D5E0BB12DE73CB /* Pods-Cram Final VersionTests.release.xcconfig */,
+				69445B359F3BBFF10E155338 /* Pods-Cram Final VersionUITests.debug.xcconfig */,
+				03371BA59C380417D5F64A40 /* Pods-Cram Final VersionUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F55D6D11206AC09800234187 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F55D6D12206AC09800234187 /* MapKit.framework */,
+				16C12421C1C7469532B5D482 /* Pods_Cram_Final_Version.framework */,
+				B6AFA9D4FBBE33485DC90EAF /* Pods_Cram_Final_VersionTests.framework */,
+				1E8ABE8E9C7F6C113BE0CF2F /* Pods_Cram_Final_VersionUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F59619FA20668B73005151EA = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +145,8 @@
 				F5961A1D20668B73005151EA /* Cram Final VersionTests */,
 				F5961A2820668B73005151EA /* Cram Final VersionUITests */,
 				F5961A0420668B73005151EA /* Products */,
+				F55D6D11206AC09800234187 /* Frameworks */,
+				8292A55FB2C8DEDF65E4FDF5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,12 +164,22 @@
 			isa = PBXGroup;
 			children = (
 				F5961A0620668B73005151EA /* AppDelegate.swift */,
-				F5961A0820668B73005151EA /* ViewController.swift */,
+				F5961A0820668B73005151EA /* LoginViewController.swift */,
 				F5961A0A20668B73005151EA /* Main.storyboard */,
+				F5EB2E47206AD9F40010EDAE /* ProfileSetupViewController.swift */,
+				F5CAF546206AAA5200BC8E39 /* SignUpViewController.swift */,
+				F5CAF53E206A9E4300BC8E39 /* ProfileViewController.swift */,
+				F5CAF540206A9E7000BC8E39 /* ChatTableViewController.swift */,
+				F5CAF53C206A9E2600BC8E39 /* ListTableViewController.swift */,
+				F5CAF53A206A9E0400BC8E39 /* MapViewController.swift */,
 				F5961A1020668B73005151EA /* Assets.xcassets */,
 				F5961A1220668B73005151EA /* LaunchScreen.storyboard */,
 				F5961A1520668B73005151EA /* Info.plist */,
 				F5961A0D20668B73005151EA /* Cram_Final_Version.xcdatamodeld */,
+				F5CAF536206A9ADB00BC8E39 /* user.swift */,
+				F5CAF542206A9F8600BC8E39 /* studyGroup.swift */,
+				F5CAF538206A9C3B00BC8E39 /* course.swift */,
+				F55D6D14206AC24900234187 /* GoogleService-Info.plist */,
 			);
 			path = "Cram Final Version";
 			sourceTree = "<group>";
@@ -135,9 +209,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F5961A2E20668B73005151EA /* Build configuration list for PBXNativeTarget "Cram Final Version" */;
 			buildPhases = (
+				8D50AD566A178362DEFA316B /* [CP] Check Pods Manifest.lock */,
 				F59619FF20668B73005151EA /* Sources */,
 				F5961A0020668B73005151EA /* Frameworks */,
 				F5961A0120668B73005151EA /* Resources */,
+				031F2A59468594164DF95ABB /* [CP] Embed Pods Frameworks */,
+				1A5C478482B7AA077261C8A6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,9 +229,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F5961A3120668B73005151EA /* Build configuration list for PBXNativeTarget "Cram Final VersionTests" */;
 			buildPhases = (
+				A351FE17D9B82BCA4FF5AB17 /* [CP] Check Pods Manifest.lock */,
 				F5961A1620668B73005151EA /* Sources */,
 				F5961A1720668B73005151EA /* Frameworks */,
 				F5961A1820668B73005151EA /* Resources */,
+				081DE5D43C2905D3925DF708 /* [CP] Embed Pods Frameworks */,
+				BA89572B5766D652DBCB98FF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,9 +250,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F5961A3420668B73005151EA /* Build configuration list for PBXNativeTarget "Cram Final VersionUITests" */;
 			buildPhases = (
+				371E04123ED83CB10EA21A2C /* [CP] Check Pods Manifest.lock */,
 				F5961A2120668B73005151EA /* Sources */,
 				F5961A2220668B73005151EA /* Frameworks */,
 				F5961A2320668B73005151EA /* Resources */,
+				A9C677DA36A1C9787D7656C7 /* [CP] Embed Pods Frameworks */,
+				5B5F029B0F83C6AD25A6187F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -197,6 +280,11 @@
 					F5961A0220668B73005151EA = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					F5961A1920668B73005151EA = {
 						CreatedOnToolsVersion = 9.2;
@@ -236,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5961A1420668B73005151EA /* LaunchScreen.storyboard in Resources */,
+				F55D6D15206AC24900234187 /* GoogleService-Info.plist in Resources */,
 				F5961A1120668B73005151EA /* Assets.xcassets in Resources */,
 				F5961A0C20668B73005151EA /* Main.storyboard in Resources */,
 			);
@@ -257,14 +346,161 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		031F2A59468594164DF95ABB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cram Final Version/Pods-Cram Final Version-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		081DE5D43C2905D3925DF708 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cram Final VersionTests/Pods-Cram Final VersionTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1A5C478482B7AA077261C8A6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cram Final Version/Pods-Cram Final Version-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		371E04123ED83CB10EA21A2C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5B5F029B0F83C6AD25A6187F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cram Final VersionUITests/Pods-Cram Final VersionUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D50AD566A178362DEFA316B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A351FE17D9B82BCA4FF5AB17 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A9C677DA36A1C9787D7656C7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cram Final VersionUITests/Pods-Cram Final VersionUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA89572B5766D652DBCB98FF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cram Final VersionTests/Pods-Cram Final VersionTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F59619FF20668B73005151EA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5CAF547206AAA5200BC8E39 /* SignUpViewController.swift in Sources */,
+				F5CAF537206A9ADC00BC8E39 /* user.swift in Sources */,
+				F5CAF53B206A9E0400BC8E39 /* MapViewController.swift in Sources */,
+				F5CAF541206A9E7000BC8E39 /* ChatTableViewController.swift in Sources */,
+				F5EB2E48206AD9F40010EDAE /* ProfileSetupViewController.swift in Sources */,
 				F5961A0F20668B73005151EA /* Cram_Final_Version.xcdatamodeld in Sources */,
-				F5961A0920668B73005151EA /* ViewController.swift in Sources */,
+				F5CAF539206A9C3B00BC8E39 /* course.swift in Sources */,
+				F5CAF543206A9F8600BC8E39 /* studyGroup.swift in Sources */,
+				F5961A0920668B73005151EA /* LoginViewController.swift in Sources */,
 				F5961A0720668B73005151EA /* AppDelegate.swift in Sources */,
+				F5CAF53F206A9E4300BC8E39 /* ProfileViewController.swift in Sources */,
+				F5CAF53D206A9E2600BC8E39 /* ListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,11 +664,13 @@
 		};
 		F5961A2F20668B73005151EA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E185B0C49F09B48E89020208 /* Pods-Cram Final Version.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UBWPYUEANY;
 				INFOPLIST_FILE = "Cram Final Version/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Capstone.Cram-Final-Version";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -443,11 +681,13 @@
 		};
 		F5961A3020668B73005151EA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB6E382E6C669583F8A0F933 /* Pods-Cram Final Version.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UBWPYUEANY;
 				INFOPLIST_FILE = "Cram Final Version/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Capstone.Cram-Final-Version";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -458,6 +698,7 @@
 		};
 		F5961A3220668B73005151EA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66074E90A0BA377925A676E6 /* Pods-Cram Final VersionTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -475,6 +716,7 @@
 		};
 		F5961A3320668B73005151EA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 76BB8263B0D5E0BB12DE73CB /* Pods-Cram Final VersionTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -492,6 +734,7 @@
 		};
 		F5961A3520668B73005151EA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69445B359F3BBFF10E155338 /* Pods-Cram Final VersionUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -508,6 +751,7 @@
 		};
 		F5961A3620668B73005151EA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03371BA59C380417D5F64A40 /* Pods-Cram Final VersionUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
