@@ -13,10 +13,10 @@ class user {
     var username: String
     var university: String
     var major: String
-    var classes: [course]
+    var classes: [Course]
     var location: MKMapPoint
     
-    init(username: String, university: String, major: String, classes: [course], location: MKMapPoint){
+    init(username: String, university: String, major: String, classes: [Course], location: MKMapPoint){
         self.username = username
         self.university = university
         self.major = major

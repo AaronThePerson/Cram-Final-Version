@@ -7,7 +7,25 @@
 		<key>Cram Final Version.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>14</integer>
+			<integer>15</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>F5961A0220668B73005151EA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F5961A1920668B73005151EA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F5961A2420668B73005151EA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
