@@ -1,14 +1,14 @@
- //
-//  ListTableViewController.swift
+//
+//  PostsTableViewController.swift
 //  Cram Final Version
 //
-//  Created by Aaron Speakman on 3/27/18.
+//  Created by Aaron Speakman on 4/4/18.
 //  Copyright © 2018 Aaron Speakman. All rights reserved.
 //
 
 import UIKit
 
-class ListTableViewController: UITableViewController {
+class PostsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

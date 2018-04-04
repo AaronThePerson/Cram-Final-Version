@@ -10,11 +10,20 @@
 		0AB49FF485C1A87E70BC16DE /* Pods_Cram_Final_VersionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6AFA9D4FBBE33485DC90EAF /* Pods_Cram_Final_VersionTests.framework */; };
 		78845CB9FC33A11C839DDE48 /* Pods_Cram_Final_VersionUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E8ABE8E9C7F6C113BE0CF2F /* Pods_Cram_Final_VersionUITests.framework */; };
 		8BA335CA7CEA9CC2CE89A8A4 /* Pods_Cram_Final_Version.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16C12421C1C7469532B5D482 /* Pods_Cram_Final_Version.framework */; };
+		F5072F262075227400D31C59 /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5072F252075227400D31C59 /* PostsTableViewController.swift */; };
+		F5072F2A2075239100D31C59 /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5072F292075239100D31C59 /* PostsTableViewCell.swift */; };
+		F5072F2C20752D4300D31C59 /* ChatLogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5072F2B20752D4300D31C59 /* ChatLogTableViewController.swift */; };
+		F5072F322075312F00D31C59 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5072F312075312F00D31C59 /* DiscoverViewController.swift */; };
+		F5072F3820753F2000D31C59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5072F3720753F2000D31C59 /* Assets.xcassets */; };
+		F517B0C120755ED3004EC6F0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F517B0BF20755ED3004EC6F0 /* MapViewController.swift */; };
+		F517B0C220755ED3004EC6F0 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F517B0C020755ED3004EC6F0 /* MapViewController.xib */; };
+		F517B0C520755EF0004EC6F0 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F517B0C320755EF0004EC6F0 /* ListViewController.swift */; };
+		F517B0C620755EF0004EC6F0 /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F517B0C420755EF0004EC6F0 /* ListViewController.xib */; };
+		F517B0C820756865004EC6F0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F517B0C720756865004EC6F0 /* CoreLocation.framework */; };
 		F53DB9AD206C2FD700055A16 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DB9AC206C2FD700055A16 /* User.swift */; };
 		F53DB9AF206C2FE800055A16 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DB9AE206C2FE800055A16 /* Course.swift */; };
 		F53DB9B1206C2FFC00055A16 /* StudyGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DB9B0206C2FFC00055A16 /* StudyGroup.swift */; };
 		F53DB9B3206C3CF600055A16 /* AddCourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DB9B2206C3CF600055A16 /* AddCourseTableViewCell.swift */; };
-		F53DB9B5206C8AD300055A16 /* EnterDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DB9B4206C8AD300055A16 /* EnterDescriptionViewController.swift */; };
 		F558867B20715D5900830FD1 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F558867A20715D5900830FD1 /* Post.swift */; };
 		F55D6D13206AC09800234187 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F55D6D12206AC09800234187 /* MapKit.framework */; };
 		F55D6D15206AC24900234187 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F55D6D14206AC24900234187 /* GoogleService-Info.plist */; };
@@ -22,14 +31,11 @@
 		F5961A0920668B73005151EA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5961A0820668B73005151EA /* LoginViewController.swift */; };
 		F5961A0C20668B73005151EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5961A0A20668B73005151EA /* Main.storyboard */; };
 		F5961A0F20668B73005151EA /* Cram_Final_Version.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5961A0D20668B73005151EA /* Cram_Final_Version.xcdatamodeld */; };
-		F5961A1120668B73005151EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5961A1020668B73005151EA /* Assets.xcassets */; };
 		F5961A1420668B73005151EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5961A1220668B73005151EA /* LaunchScreen.storyboard */; };
 		F5961A1F20668B73005151EA /* Cram_Final_VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5961A1E20668B73005151EA /* Cram_Final_VersionTests.swift */; };
 		F5961A2A20668B73005151EA /* Cram_Final_VersionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5961A2920668B73005151EA /* Cram_Final_VersionUITests.swift */; };
 		F5BD921E206B253300CF6E4A /* AddCourseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BD921D206B253300CF6E4A /* AddCourseTableViewController.swift */; };
 		F5CAF537206A9ADC00BC8E39 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAF536206A9ADB00BC8E39 /* user.swift */; };
-		F5CAF53B206A9E0400BC8E39 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAF53A206A9E0400BC8E39 /* MapViewController.swift */; };
-		F5CAF53D206A9E2600BC8E39 /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAF53C206A9E2600BC8E39 /* ListTableViewController.swift */; };
 		F5CAF53F206A9E4300BC8E39 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAF53E206A9E4300BC8E39 /* ProfileViewController.swift */; };
 		F5CAF541206A9E7000BC8E39 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAF540206A9E7000BC8E39 /* ChatTableViewController.swift */; };
 		F5CAF543206A9F8600BC8E39 /* studyGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAF542206A9F8600BC8E39 /* studyGroup.swift */; };
@@ -63,11 +69,20 @@
 		B6AFA9D4FBBE33485DC90EAF /* Pods_Cram_Final_VersionTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cram_Final_VersionTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6E382E6C669583F8A0F933 /* Pods-Cram Final Version.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cram Final Version.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cram Final Version/Pods-Cram Final Version.release.xcconfig"; sourceTree = "<group>"; };
 		E185B0C49F09B48E89020208 /* Pods-Cram Final Version.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cram Final Version.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cram Final Version/Pods-Cram Final Version.debug.xcconfig"; sourceTree = "<group>"; };
+		F5072F252075227400D31C59 /* PostsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewController.swift; sourceTree = "<group>"; };
+		F5072F292075239100D31C59 /* PostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
+		F5072F2B20752D4300D31C59 /* ChatLogTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogTableViewController.swift; sourceTree = "<group>"; };
+		F5072F312075312F00D31C59 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		F5072F3720753F2000D31C59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F517B0BF20755ED3004EC6F0 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		F517B0C020755ED3004EC6F0 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		F517B0C320755EF0004EC6F0 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		F517B0C420755EF0004EC6F0 /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
+		F517B0C720756865004EC6F0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F53DB9AC206C2FD700055A16 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F53DB9AE206C2FE800055A16 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		F53DB9B0206C2FFC00055A16 /* StudyGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyGroup.swift; sourceTree = "<group>"; };
 		F53DB9B2206C3CF600055A16 /* AddCourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseTableViewCell.swift; sourceTree = "<group>"; };
-		F53DB9B4206C8AD300055A16 /* EnterDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterDescriptionViewController.swift; sourceTree = "<group>"; };
 		F558867A20715D5900830FD1 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F55D6D12206AC09800234187 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F55D6D14206AC24900234187 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -76,7 +91,6 @@
 		F5961A0820668B73005151EA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F5961A0B20668B73005151EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F5961A0E20668B73005151EA /* Cram_Final_Version.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cram_Final_Version.xcdatamodel; sourceTree = "<group>"; };
-		F5961A1020668B73005151EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F5961A1320668B73005151EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F5961A1520668B73005151EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5961A1A20668B73005151EA /* Cram Final VersionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cram Final VersionTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,8 +101,6 @@
 		F5961A2B20668B73005151EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F5BD921D206B253300CF6E4A /* AddCourseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseTableViewController.swift; sourceTree = "<group>"; };
 		F5CAF536206A9ADB00BC8E39 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
-		F5CAF53A206A9E0400BC8E39 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		F5CAF53C206A9E2600BC8E39 /* ListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 		F5CAF53E206A9E4300BC8E39 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F5CAF540206A9E7000BC8E39 /* ChatTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
 		F5CAF542206A9F8600BC8E39 /* studyGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studyGroup.swift; sourceTree = "<group>"; };
@@ -100,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F517B0C820756865004EC6F0 /* CoreLocation.framework in Frameworks */,
 				F55D6D13206AC09800234187 /* MapKit.framework in Frameworks */,
 				8BA335CA7CEA9CC2CE89A8A4 /* Pods_Cram_Final_Version.framework in Frameworks */,
 			);
@@ -151,22 +164,68 @@
 		F50CF6F2206C2F5400F5D682 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				F53DB9B4206C8AD300055A16 /* EnterDescriptionViewController.swift */,
+				F517B0BE20755E88004EC6F0 /* Login & Sign Up */,
+				F517B0BD20755E62004EC6F0 /* Posts */,
+				F517B0BC20755E00004EC6F0 /* Chat */,
+				F517B0BA20755DDA004EC6F0 /* Profile */,
+				F517B0B920755DCF004EC6F0 /* Discover */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		F517B0B920755DCF004EC6F0 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				F5072F312075312F00D31C59 /* DiscoverViewController.swift */,
+				F517B0BF20755ED3004EC6F0 /* MapViewController.swift */,
+				F517B0C020755ED3004EC6F0 /* MapViewController.xib */,
+				F517B0C320755EF0004EC6F0 /* ListViewController.swift */,
+				F517B0C420755EF0004EC6F0 /* ListViewController.xib */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
+		F517B0BA20755DDA004EC6F0 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F5CAF53E206A9E4300BC8E39 /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		F517B0BC20755E00004EC6F0 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				F5072F2B20752D4300D31C59 /* ChatLogTableViewController.swift */,
+				F5CAF540206A9E7000BC8E39 /* ChatTableViewController.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		F517B0BD20755E62004EC6F0 /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				F5072F292075239100D31C59 /* PostsTableViewCell.swift */,
+				F5072F252075227400D31C59 /* PostsTableViewController.swift */,
+			);
+			path = Posts;
+			sourceTree = "<group>";
+		};
+		F517B0BE20755E88004EC6F0 /* Login & Sign Up */ = {
+			isa = PBXGroup;
+			children = (
 				F5961A0820668B73005151EA /* LoginViewController.swift */,
 				F5BD921D206B253300CF6E4A /* AddCourseTableViewController.swift */,
 				F53DB9B2206C3CF600055A16 /* AddCourseTableViewCell.swift */,
 				F5CAF546206AAA5200BC8E39 /* SignUpViewController.swift */,
-				F5CAF53E206A9E4300BC8E39 /* ProfileViewController.swift */,
-				F5CAF540206A9E7000BC8E39 /* ChatTableViewController.swift */,
-				F5CAF53C206A9E2600BC8E39 /* ListTableViewController.swift */,
-				F5CAF53A206A9E0400BC8E39 /* MapViewController.swift */,
 			);
-			path = Controller;
+			path = "Login & Sign Up";
 			sourceTree = "<group>";
 		};
 		F55D6D11206AC09800234187 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F517B0C720756865004EC6F0 /* CoreLocation.framework */,
 				F55D6D12206AC09800234187 /* MapKit.framework */,
 				16C12421C1C7469532B5D482 /* Pods_Cram_Final_Version.framework */,
 				B6AFA9D4FBBE33485DC90EAF /* Pods_Cram_Final_VersionTests.framework */,
@@ -204,7 +263,7 @@
 				F50CF6F2206C2F5400F5D682 /* Controller */,
 				F5961A0620668B73005151EA /* AppDelegate.swift */,
 				F5961A0A20668B73005151EA /* Main.storyboard */,
-				F5961A1020668B73005151EA /* Assets.xcassets */,
+				F5072F3720753F2000D31C59 /* Assets.xcassets */,
 				F5961A1220668B73005151EA /* LaunchScreen.storyboard */,
 				F5961A1520668B73005151EA /* Info.plist */,
 				F5961A0D20668B73005151EA /* Cram_Final_Version.xcdatamodeld */,
@@ -354,9 +413,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5072F3820753F2000D31C59 /* Assets.xcassets in Resources */,
 				F5961A1420668B73005151EA /* LaunchScreen.storyboard in Resources */,
+				F517B0C620755EF0004EC6F0 /* ListViewController.xib in Resources */,
 				F55D6D15206AC24900234187 /* GoogleService-Info.plist in Resources */,
-				F5961A1120668B73005151EA /* Assets.xcassets in Resources */,
+				F517B0C220755ED3004EC6F0 /* MapViewController.xib in Resources */,
 				F5961A0C20668B73005151EA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -520,23 +581,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F53DB9B5206C8AD300055A16 /* EnterDescriptionViewController.swift in Sources */,
 				F5CAF547206AAA5200BC8E39 /* SignUpViewController.swift in Sources */,
 				F53DB9B1206C2FFC00055A16 /* StudyGroup.swift in Sources */,
 				F5CAF537206A9ADC00BC8E39 /* user.swift in Sources */,
 				F558867B20715D5900830FD1 /* Post.swift in Sources */,
 				F5BD921E206B253300CF6E4A /* AddCourseTableViewController.swift in Sources */,
 				F53DB9B3206C3CF600055A16 /* AddCourseTableViewCell.swift in Sources */,
-				F5CAF53B206A9E0400BC8E39 /* MapViewController.swift in Sources */,
+				F5072F2C20752D4300D31C59 /* ChatLogTableViewController.swift in Sources */,
+				F517B0C120755ED3004EC6F0 /* MapViewController.swift in Sources */,
+				F5072F322075312F00D31C59 /* DiscoverViewController.swift in Sources */,
 				F5CAF541206A9E7000BC8E39 /* ChatTableViewController.swift in Sources */,
 				F5961A0F20668B73005151EA /* Cram_Final_Version.xcdatamodeld in Sources */,
 				F53DB9AD206C2FD700055A16 /* User.swift in Sources */,
 				F5CAF543206A9F8600BC8E39 /* studyGroup.swift in Sources */,
 				F5961A0920668B73005151EA /* LoginViewController.swift in Sources */,
+				F5072F262075227400D31C59 /* PostsTableViewController.swift in Sources */,
 				F5961A0720668B73005151EA /* AppDelegate.swift in Sources */,
 				F5CAF53F206A9E4300BC8E39 /* ProfileViewController.swift in Sources */,
+				F5072F2A2075239100D31C59 /* PostsTableViewCell.swift in Sources */,
+				F517B0C520755EF0004EC6F0 /* ListViewController.swift in Sources */,
 				F53DB9AF206C2FE800055A16 /* Course.swift in Sources */,
-				F5CAF53D206A9E2600BC8E39 /* ListTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

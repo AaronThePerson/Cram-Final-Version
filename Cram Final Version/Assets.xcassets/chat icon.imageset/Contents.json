@@ -2,7 +2,6 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "8dda682abdd70658d8b6d61cc0343a40.png",
       "scale" : "1x"
     },
     {
@@ -11,6 +10,7 @@
     },
     {
       "idiom" : "universal",
+      "filename" : "icons8-speech-bubble-104.png",
       "scale" : "3x"
     }
   ],
