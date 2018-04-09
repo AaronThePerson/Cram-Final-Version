@@ -15,7 +15,6 @@ class User: NSObject {
     var major: String?
     var profileDescription: String?
     var profilePic: UIImage?
-    //var posts: [Post]?
     //var courses: [Course]?
     //var location: MKMapPoint
 }

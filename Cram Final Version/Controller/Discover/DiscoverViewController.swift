@@ -9,32 +9,60 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Firebase
+import GeoFire
 
-class DiscoverViewController: UIViewController, CLLocationManagerDelegate {
-
+class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendFilter {
+    
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var mapListController: UISegmentedControl!
     
     let mapView = MapViewController()
     let listView = ListViewController()
     
-    var userLocation: CLLocationCoordinate2D!
+    var dataFilter = Filter(distance: 5, university: false, major: false)
+    
+    var userLocation = CLLocation()
+    var userCoordinates: CLLocationCoordinate2D!
     let manager = CLLocationManager()
-        
+    
+    var ref: DatabaseReference?
+    var locationRef: GeoFire?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        prepareDatabase()
         prepareUI()
         prepareLocation()
+    }
+    
+    func setFilter(filter: Filter) {
+        self.dataFilter = filter
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToFilter"{
+            let vc = segue.destination as! FilterViewController
+            vc.delegate = self
+            vc.dataFilter = dataFilter
+        }
+    }
+    
+    @IBAction func openfilter(_ sender: Any) {
+        performSegue(withIdentifier: "goToFilter", sender: Any?.self)
+    }
+    
+    private func prepareDatabase(){
+        ref = Database.database().reference(fromURL: "https://cram-capstone.firebaseio.com/")
+        locationRef = GeoFire(firebaseRef: (ref?.child("locations"))!)
     }
     
     private func prepareLocation(){
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.distanceFilter = CLLocationDistance(exactly: 15.0)!
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
-    }
-    
-    private func getUserLocation(){
     }
     
     private func prepareUI(){
@@ -42,6 +70,11 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate {
         let listViewContainer = listView.view
         container.addSubview(listViewContainer!)
         container.addSubview(mapViewContainer!)
+    }
+    
+    private func addUserLocation(){
+        userLocation = CLLocation(latitude: userCoordinates.latitude, longitude: userCoordinates.longitude)
+        locationRef?.setLocation(userLocation, forKey: (Auth.auth().currentUser?.uid)!)
     }
 
     @IBAction func switchView(_ sender: UISegmentedControl) {
@@ -58,13 +91,15 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
         
-        userLocation = CLLocationCoordinate2DMake(locations[0].coordinate.latitude, locations[0].coordinate.longitude)
+        userCoordinates = CLLocationCoordinate2DMake(locations[0].coordinate.latitude, locations[0].coordinate.longitude)
         
-        let region: MKCoordinateRegion = MKCoordinateRegionMake(userLocation, span)
+        let region: MKCoordinateRegion = MKCoordinateRegionMake(userCoordinates, span)
         
         mapView.map.setRegion(region, animated: false)
         
         mapView.map.showsUserLocation = true
+        
+        addUserLocation()
     }
     
 }

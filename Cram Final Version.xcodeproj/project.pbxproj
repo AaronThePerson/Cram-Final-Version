@@ -24,6 +24,8 @@
 		F53DB9AF206C2FE800055A16 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DB9AE206C2FE800055A16 /* Course.swift */; };
 		F53DB9B1206C2FFC00055A16 /* StudyGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DB9B0206C2FFC00055A16 /* StudyGroup.swift */; };
 		F53DB9B3206C3CF600055A16 /* AddCourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DB9B2206C3CF600055A16 /* AddCourseTableViewCell.swift */; };
+		F5580681207A8C710005C3FB /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5580680207A8C710005C3FB /* Filter.swift */; };
+		F5580686207AAF2B0005C3FB /* FilterCourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5580684207AAF2B0005C3FB /* FilterCourseTableViewCell.swift */; };
 		F558867B20715D5900830FD1 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F558867A20715D5900830FD1 /* Post.swift */; };
 		F55D6D13206AC09800234187 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F55D6D12206AC09800234187 /* MapKit.framework */; };
 		F55D6D15206AC24900234187 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F55D6D14206AC24900234187 /* GoogleService-Info.plist */; };
@@ -40,6 +42,7 @@
 		F5CAF541206A9E7000BC8E39 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAF540206A9E7000BC8E39 /* ChatTableViewController.swift */; };
 		F5CAF543206A9F8600BC8E39 /* studyGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAF542206A9F8600BC8E39 /* studyGroup.swift */; };
 		F5CAF547206AAA5200BC8E39 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAF546206AAA5200BC8E39 /* SignUpViewController.swift */; };
+		F5CD1FBD207A57E500C901A2 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CD1FBC207A57E500C901A2 /* FilterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +86,8 @@
 		F53DB9AE206C2FE800055A16 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		F53DB9B0206C2FFC00055A16 /* StudyGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyGroup.swift; sourceTree = "<group>"; };
 		F53DB9B2206C3CF600055A16 /* AddCourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseTableViewCell.swift; sourceTree = "<group>"; };
+		F5580680207A8C710005C3FB /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		F5580684207AAF2B0005C3FB /* FilterCourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCourseTableViewCell.swift; sourceTree = "<group>"; };
 		F558867A20715D5900830FD1 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F55D6D12206AC09800234187 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F55D6D14206AC24900234187 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -105,6 +110,7 @@
 		F5CAF540206A9E7000BC8E39 /* ChatTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
 		F5CAF542206A9F8600BC8E39 /* studyGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = studyGroup.swift; sourceTree = "<group>"; };
 		F5CAF546206AAA5200BC8E39 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		F5CD1FBC207A57E500C901A2 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +163,7 @@
 				F558867A20715D5900830FD1 /* Post.swift */,
 				F53DB9AE206C2FE800055A16 /* Course.swift */,
 				F53DB9B0206C2FFC00055A16 /* StudyGroup.swift */,
+				F5580680207A8C710005C3FB /* Filter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -176,11 +183,13 @@
 		F517B0B920755DCF004EC6F0 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				F5CD1FBC207A57E500C901A2 /* FilterViewController.swift */,
 				F5072F312075312F00D31C59 /* DiscoverViewController.swift */,
 				F517B0BF20755ED3004EC6F0 /* MapViewController.swift */,
 				F517B0C020755ED3004EC6F0 /* MapViewController.xib */,
 				F517B0C320755EF0004EC6F0 /* ListViewController.swift */,
 				F517B0C420755EF0004EC6F0 /* ListViewController.xib */,
+				F5580684207AAF2B0005C3FB /* FilterCourseTableViewCell.swift */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -581,6 +590,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5CD1FBD207A57E500C901A2 /* FilterViewController.swift in Sources */,
 				F5CAF547206AAA5200BC8E39 /* SignUpViewController.swift in Sources */,
 				F53DB9B1206C2FFC00055A16 /* StudyGroup.swift in Sources */,
 				F5CAF537206A9ADC00BC8E39 /* user.swift in Sources */,
@@ -593,8 +603,10 @@
 				F5CAF541206A9E7000BC8E39 /* ChatTableViewController.swift in Sources */,
 				F5961A0F20668B73005151EA /* Cram_Final_Version.xcdatamodeld in Sources */,
 				F53DB9AD206C2FD700055A16 /* User.swift in Sources */,
+				F5580681207A8C710005C3FB /* Filter.swift in Sources */,
 				F5CAF543206A9F8600BC8E39 /* studyGroup.swift in Sources */,
 				F5961A0920668B73005151EA /* LoginViewController.swift in Sources */,
+				F5580686207AAF2B0005C3FB /* FilterCourseTableViewCell.swift in Sources */,
 				F5072F262075227400D31C59 /* PostsTableViewController.swift in Sources */,
 				F5961A0720668B73005151EA /* AppDelegate.swift in Sources */,
 				F5CAF53F206A9E4300BC8E39 /* ProfileViewController.swift in Sources */,
