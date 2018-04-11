@@ -28,6 +28,10 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
     
     var ref: DatabaseReference?
     var locationRef: GeoFire?
+    var mappableUsers = [User]()
+    
+    let kiloToMile = Double(1.60934)
+    var miles: Double?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +54,10 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
     
     @IBAction func openfilter(_ sender: Any) {
         performSegue(withIdentifier: "goToFilter", sender: Any?.self)
+    }
+    
+    @IBAction func refreshUsers(_ sender: Any) {
+        getOtherUsers()
     }
     
     private func prepareDatabase(){
@@ -76,6 +84,28 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
         userLocation = CLLocation(latitude: userCoordinates.latitude, longitude: userCoordinates.longitude)
         locationRef?.setLocation(userLocation, forKey: (Auth.auth().currentUser?.uid)!)
     }
+    
+    func getOtherUsers(){
+        miles = Double(dataFilter.distance!) * kiloToMile
+        let circleQuery = locationRef?.query(at: userLocation, withRadius: miles!)
+        circleQuery?.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
+            if key != Auth.auth().currentUser?.uid{
+                print("uid: " + key + " Latitude: " + String(location.coordinate.latitude) + " Longitude: " + String(location.coordinate.longitude))
+//                let someUser = User()
+//                Database.database().reference().child("users").child((key as String)).observe(DataEventType.value, with: { (snapshot) in
+//                    if let dictionary = snapshot.value as? [String: AnyObject]{
+//                        someUser.uid = snapshot.key
+//                        someUser.location = location as CLLocation
+//                        someUser.username = (dictionary["username"] as? String)
+//                        someUser.university = (dictionary["university"] as? String)
+//                        someUser.major = (dictionary["major"] as? String)
+//                        someUser.profileDescription = (dictionary["profileDescription"] as? String)
+//                        self.mappableUsers.append(someUser)
+//                    }
+//                }, withCancel: nil)
+            }
+        })
+    }
 
     @IBAction func switchView(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -97,9 +127,10 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
         
         mapView.map.setRegion(region, animated: false)
         
-        mapView.map.showsUserLocation = true
+        mapView.map.showsUserLocation = false
         
         addUserLocation()
+        getOtherUsers()
     }
     
 }

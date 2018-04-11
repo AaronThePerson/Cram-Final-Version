@@ -10,11 +10,13 @@ import UIKit
 import MapKit
 
 class User: NSObject {
+    var uid: String?
     var username: String?
     var university: String?
     var major: String?
     var profileDescription: String?
     var profilePic: UIImage?
-    //var courses: [Course]?
-    //var location: MKMapPoint
+    var courses: [Course]?
+    var location: CLLocation?
+    
 }

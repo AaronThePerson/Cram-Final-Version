@@ -171,7 +171,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UITextViewDel
             }
             
             guard let uid = Auth.auth().currentUser?.uid else{
-                print("This fucked up.")
                 return
             }
 

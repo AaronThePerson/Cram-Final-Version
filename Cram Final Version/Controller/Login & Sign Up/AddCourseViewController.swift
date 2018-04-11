@@ -1,16 +1,17 @@
 //
-//  AddCourseTableViewController.swift
+//  AddCourseViewController.swift
 //  Cram Final Version
 //
-//  Created by Aaron Speakman on 3/27/18.
+//  Created by Aaron Speakman on 4/10/18.
 //  Copyright © 2018 Aaron Speakman. All rights reserved.
 //
 
 import UIKit
 import Firebase
-import FirebaseDatabase
 
-class AddCourseTableViewController: UITableViewController {
+class AddCourseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+    @IBOutlet weak var courseTable: UITableView!
     
     let ref = Database.database().reference(fromURL: "https://cram-capstone.firebaseio.com/")
     var courses = [Course]()
@@ -19,7 +20,7 @@ class AddCourseTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         userHandler()
-        tableView.rowHeight = 90
+        courseTable.rowHeight = 90
         fetchCourses()
     }
     
@@ -32,34 +33,34 @@ class AddCourseTableViewController: UITableViewController {
             print("User is not signed in.")
         }
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return courses.count
     }
- 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIndentifier = "AddCourseTableViewCell"
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIndentifier, for: indexPath) as? AddCourseTableViewCell else{
             fatalError("Cell could not be instantiated")
         }
-    
+        
         let someCourse = courses[indexPath.row]
         cell.courseNameLabel.text = someCourse.courseName
         cell.courseCodeLabel.text = someCourse.courseCode
         cell.profLabel.text = someCourse.prof
-
+        
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             let id = self.courses[indexPath.row].courseID
             let toBeDeleted = ref.child("users").child(uid!).child("courses").child(id!)
             toBeDeleted.removeValue()
             self.courses.remove(at: indexPath.row)
-            self.tableView.reloadData()
+            self.courseTable.reloadData()
         }
     }
     
@@ -74,7 +75,7 @@ class AddCourseTableViewController: UITableViewController {
                 someCourse.courseCode = (dictionary["courseCode"] as? String)!
                 someCourse.prof = (dictionary["prof"] as? String)!
                 self.courses.append(someCourse)
-                self.tableView.reloadData()
+                self.courseTable.reloadData()
             }
             
         }, withCancel: nil)
@@ -107,20 +108,20 @@ class AddCourseTableViewController: UITableViewController {
                 }
             }
         }
-
+        
         courseCollect.addAction(cancelButton)
         courseCollect.addAction(addButton)
         
         present(courseCollect, animated: true, completion: nil)
     }
     
-    @IBAction func addClasse(_ sender: Any) {
+    @IBAction func AddButton(_ sender: Any) {
         addCourse()
-        self.tableView.reloadData()
+        self.courseTable.reloadData()
     }
     
-    @IBAction func toApp(_ sender: Any) {
+    @IBAction func DoneButton(_ sender: Any) {
         performSegue(withIdentifier: "goToApp", sender: self)
     }
-
+    
 }
