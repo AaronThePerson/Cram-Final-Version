@@ -522,43 +522,50 @@
             </objects>
             <point key="canvasLocation" x="-154" y="-281"/>
         </scene>
-        <!--View Controller-->
+        <!--viewProfile-->
         <scene sceneID="kdn-eS-Q1b">
             <objects>
-                <viewController id="Fon-dt-k34" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="viewProfile" title="viewProfile" id="Fon-dt-k34" customClass="ViewProfileViewController" customModule="Cram_Final_Version" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9XO-nd-zWM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94S-JY-c9K">
-                                <rect key="frame" x="166" y="83" width="34" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94S-JY-c9K" userLabel="UID">
+                                <rect key="frame" x="111" y="323" width="153" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gbe-Uk-W8E">
-                                <rect key="frame" x="139" y="112" width="88" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qv1-Gb-hue">
-                                <rect key="frame" x="144" y="141" width="79" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mgO-mX-h8x">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Back To Discover" id="YvL-6j-ocd">
+                                        <connections>
+                                            <action selector="BackToDiscover:" destination="Fon-dt-k34" id="Q7l-IJ-FNn"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mgO-mX-h8x" firstAttribute="top" secondItem="ivO-X0-wOf" secondAttribute="top" id="7yW-rt-zEN"/>
+                            <constraint firstItem="94S-JY-c9K" firstAttribute="leading" secondItem="ivO-X0-wOf" secondAttribute="leading" constant="111" id="hb9-Iu-u34"/>
+                            <constraint firstItem="mgO-mX-h8x" firstAttribute="leading" secondItem="9XO-nd-zWM" secondAttribute="leading" id="m3a-DG-a0N"/>
+                            <constraint firstItem="94S-JY-c9K" firstAttribute="centerY" secondItem="9XO-nd-zWM" secondAttribute="centerY" id="sC4-S6-l1r"/>
+                            <constraint firstItem="mgO-mX-h8x" firstAttribute="centerX" secondItem="94S-JY-c9K" secondAttribute="centerX" id="un0-M0-Lsj"/>
+                            <constraint firstItem="mgO-mX-h8x" firstAttribute="width" secondItem="9XO-nd-zWM" secondAttribute="width" id="zFz-Ds-aQ7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ivO-X0-wOf"/>
                     </view>
+                    <connections>
+                        <outlet property="uidLabel" destination="94S-JY-c9K" id="9wd-a8-xjI"/>
+                        <segue destination="4Fe-IQ-GjZ" kind="show" identifier="backToSearching" id="Bze-bF-5YE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x0D-Ir-XtH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1050" y="-219"/>
+            <point key="canvasLocation" x="1098.4000000000001" y="-691.304347826087"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="XG8-8h-WGZ">
@@ -789,6 +796,7 @@
                         <outlet property="container" destination="5Mc-SA-otw" id="09i-za-NN0"/>
                         <outlet property="mapListController" destination="5aj-Gg-XOf" id="hQg-2v-MUv"/>
                         <segue destination="QIY-w5-VfP" kind="presentation" identifier="goToFilter" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="Ts4-Px-gud"/>
+                        <segue destination="Fon-dt-k34" kind="show" identifier="goToViewProfile" id="bXS-Rm-VzP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Hh-LH-byM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1013,8 +1021,9 @@
         <image name="profile icon" width="33" height="33"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="bXS-Rm-VzP"/>
         <segue reference="2V9-dh-CqP"/>
-        <segue reference="ew5-sf-x2A"/>
+        <segue reference="Bze-bF-5YE"/>
         <segue reference="1le-jH-spo"/>
         <segue reference="l9P-cE-oY6"/>
     </inferredMetricsTieBreakers>

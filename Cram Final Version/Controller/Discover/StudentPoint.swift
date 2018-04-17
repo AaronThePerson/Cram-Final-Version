@@ -9,15 +9,17 @@
 import UIKit
 import MapKit
 
-class StudentPoint: NSObject, MKAnnotation {
+class StudentPoint: NSObject, MKAnnotation{
     
     var coordinate: CLLocationCoordinate2D
     var title: String?
+    var subtitle: String?
     var uid: String?
     
-    init(username: String, uid: String, location: CLLocation) {
+    init(username: String, distance: String, uid: String, location: CLLocation) {
         self.coordinate = location.coordinate
         self.title = username
+        self.subtitle = distance
         self.uid = uid
     }
     

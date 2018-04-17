@@ -12,7 +12,7 @@ import CoreLocation
 import Firebase
 import GeoFire
 
-class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendFilter, MKMapViewDelegate{
+class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendFilter{
     
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var mapListController: UISegmentedControl!
@@ -32,6 +32,8 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
     var locationRef: GeoFire?
     var mappableUsers = [User]()
     
+    var viewProfileUID: String = ""
+    
     let kiloToMile = Double(1.60934)
     var miles: Double?
     
@@ -49,11 +51,6 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
                 self.mappableUsers[i].writeData()
             }
         }
-        
-    }
-    
-    func setFilter(filter: Filter) {
-        self.dataFilter = filter
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -62,6 +59,10 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
             vc.delegate = self
             vc.dataFilter = dataFilter
         }
+    }
+    
+    func setFilter(filter: Filter) {
+        self.dataFilter = filter
     }
     
     @IBAction func openfilter(_ sender: Any) {
@@ -98,8 +99,6 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
         container.addSubview(listViewContainer!)
         container.addSubview(mapViewContainer!)
         userTable = listView.userList
-        
-        userMapView.map.delegate = self
     }
     
     private func prepareCurrentUser(){
@@ -109,25 +108,18 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
                 self.currentUser.major = (dictionary["major"] as? String)
                 self.currentUser.profileDescription = (dictionary["profileDescription"] as? String)
                 self.currentUser.uid = snapshot.key
-                
             }
         }
-        
     }
     
     private func addUserLocation(){
         userLocation = CLLocation(latitude: userCoordinates.latitude, longitude: userCoordinates.longitude)
         locationRef?.setLocation(userLocation, forKey: (Auth.auth().currentUser?.uid)!)
         listView.setCurrentUserLocation(userLocation: userLocation)
-    }
-    
-    func addUserAnnotation(uid: String, username: String, location: CLLocation){
-        let annotation = StudentPoint(username: username, uid: uid, location: location)
-        self.userMapView.map.addAnnotation(annotation)
+        userMapView.setCurrentUserLocation(userLocation: userLocation)
     }
     
     func getOtherUsers(completion: ()->Void){
-        
         struct otherUser{
             var key: String
             var otherLocation: CLLocation
@@ -141,7 +133,7 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
         
         self.miles = Double(self.dataFilter.distance!) * self.kiloToMile
         let circleQuery = self.locationRef?.query(at: self.userLocation, withRadius: self.miles!)
-        self.userMapView.map.removeAnnotations(self.userMapView.map.annotations) //clear old data from map
+        self.userMapView.resetAnnotations()
         self.mappableUsers = [] //clear old user data
         circleQuery?.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
             if key != Auth.auth().currentUser?.uid{
@@ -172,7 +164,7 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
                         print("courses selected")
                     }
                     if filterCheck == true{
-                        self.addUserAnnotation(uid: (someUser?.uid)!, username: (someUser?.username)!, location: (someUser?.location)!)
+                        self.userMapView.addUserAnnotation(someUser: someUser!)
                         self.listView.addUser(addedUser: someUser!)
                     }
                 })
@@ -241,39 +233,11 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
         let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
         
         userCoordinates = CLLocationCoordinate2DMake(locations[0].coordinate.latitude, locations[0].coordinate.longitude)
-        
         let region: MKCoordinateRegion = MKCoordinateRegionMake(userCoordinates, span)
-        
         userMapView.map.setRegion(region, animated: false)
-        
         userMapView.map.showsUserLocation = true
         
         addUserLocation()
     }
-    
-//    func setNumber(number: Int){
-//        test = number
-//    }
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return test
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cellIndentifier = "discoveryCell"
-//
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIndentifier, for: indexPath) as? ListViewTableViewCell else{
-//            fatalError("Cell could not be instantiated")
-//        }
-//
-//        cell.textLabel?.text = "Username"
-//        cell.detailTextLabel?.text = "Distance"
-//
-//        return cell
-//    }
-//
-//    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-//        print("tapped")
-//    }
     
 }

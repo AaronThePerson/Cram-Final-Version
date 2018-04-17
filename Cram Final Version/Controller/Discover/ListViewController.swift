@@ -15,6 +15,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var currentLocation = CLLocation()
     var otherUsers = [User]()
+    var viewProfileUID: String? = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +70,15 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToViewProfile"{
+            let vc = segue.destination as! ViewProfileViewController
+            vc.uid = viewProfileUID
+        }
+    }
+    
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToViewProfile", sender: Any?.self)
         print("tapped")
     }
 
