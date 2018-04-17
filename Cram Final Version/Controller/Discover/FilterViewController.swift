@@ -23,7 +23,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var majorSwitch: UISwitch!
     @IBOutlet weak var courseTable: UITableView!
     
-    var dataFilter = Filter(distance: 5, university: false, major: false)
+    var dataFilter = Filter(distance: 5, university: false, major: false, selectedCourses: [])
     var courses = [Course]()
     var selectedCourses = [Course]()
     

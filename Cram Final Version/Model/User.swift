@@ -18,5 +18,17 @@ class User: NSObject {
     var profilePic: UIImage?
     var courses: [Course]?
     var location: CLLocation?
-    
+    var distanceFrom: CLLocationDistance?
+ 
+    public func writeData(){
+        print("uid: " + uid!)
+        print("username: " + username!)
+        print("university: " + university!)
+        print("major: " + major!)
+        print("courses: ")
+//        let courseNum = courses?.count
+//        for i in 0...courseNum!-1{
+//            print("course name: " + courses![i].courseName!)
+//        }
+    }
 }

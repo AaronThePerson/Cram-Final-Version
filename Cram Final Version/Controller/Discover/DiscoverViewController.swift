@@ -12,16 +12,18 @@ import CoreLocation
 import Firebase
 import GeoFire
 
-class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendFilter {
+class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendFilter, MKMapViewDelegate{
     
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var mapListController: UISegmentedControl!
     
-    let mapView = MapViewController()
+    let userMapView = MapViewController()
     let listView = ListViewController()
+    var userTable = UITableView()
     
-    var dataFilter = Filter(distance: 5, university: false, major: false)
+    var dataFilter = Filter(distance: 5, university: false, major: false, selectedCourses: [])
     
+    let currentUser = User()
     var userLocation = CLLocation()
     var userCoordinates: CLLocationCoordinate2D!
     let manager = CLLocationManager()
@@ -38,6 +40,16 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
         prepareDatabase()
         prepareUI()
         prepareLocation()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        getOtherUsers{
+            for i in 0..<self.mappableUsers.count{
+                self.mappableUsers[i].writeData()
+            }
+        }
+        
     }
     
     func setFilter(filter: Filter) {
@@ -57,7 +69,14 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
     }
     
     @IBAction func refreshUsers(_ sender: Any) {
-        getOtherUsers()
+        listView.resetToNil()
+        addUserLocation()
+        getOtherUsers {
+            print(self.mappableUsers.count)
+            for i in 0..<self.mappableUsers.count{
+                self.mappableUsers[i].writeData()
+            }
+        }
     }
     
     private func prepareDatabase(){
@@ -74,43 +93,143 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
     }
     
     private func prepareUI(){
-        let mapViewContainer = mapView.view
+        let mapViewContainer = userMapView.view
         let listViewContainer = listView.view
         container.addSubview(listViewContainer!)
         container.addSubview(mapViewContainer!)
+        userTable = listView.userList
+        
+        userMapView.map.delegate = self
+    }
+    
+    private func prepareCurrentUser(){
+        Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: DataEventType.value) { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                self.currentUser.university = (dictionary["university"] as? String)
+                self.currentUser.major = (dictionary["major"] as? String)
+                self.currentUser.profileDescription = (dictionary["profileDescription"] as? String)
+                self.currentUser.uid = snapshot.key
+                
+            }
+        }
+        
     }
     
     private func addUserLocation(){
         userLocation = CLLocation(latitude: userCoordinates.latitude, longitude: userCoordinates.longitude)
         locationRef?.setLocation(userLocation, forKey: (Auth.auth().currentUser?.uid)!)
+        listView.setCurrentUserLocation(userLocation: userLocation)
     }
     
-    func getOtherUsers(){
-        miles = Double(dataFilter.distance!) * kiloToMile
-        let circleQuery = locationRef?.query(at: userLocation, withRadius: miles!)
+    func addUserAnnotation(uid: String, username: String, location: CLLocation){
+        let annotation = StudentPoint(username: username, uid: uid, location: location)
+        self.userMapView.map.addAnnotation(annotation)
+    }
+    
+    func getOtherUsers(completion: ()->Void){
+        
+        struct otherUser{
+            var key: String
+            var otherLocation: CLLocation
+            
+            init(key: String, otherLocation: CLLocation) {
+                self.key = key
+                self.otherLocation = otherLocation
+            }
+        }
+        var nearbyUsers: [otherUser] = []
+        
+        self.miles = Double(self.dataFilter.distance!) * self.kiloToMile
+        let circleQuery = self.locationRef?.query(at: self.userLocation, withRadius: self.miles!)
+        self.userMapView.map.removeAnnotations(self.userMapView.map.annotations) //clear old data from map
+        self.mappableUsers = [] //clear old user data
         circleQuery?.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
             if key != Auth.auth().currentUser?.uid{
-                print("uid: " + key + " Latitude: " + String(location.coordinate.latitude) + " Longitude: " + String(location.coordinate.longitude))
-//                let someUser = User()
-//                Database.database().reference().child("users").child((key as String)).observe(DataEventType.value, with: { (snapshot) in
-//                    if let dictionary = snapshot.value as? [String: AnyObject]{
-//                        someUser.uid = snapshot.key
-//                        someUser.location = location as CLLocation
-//                        someUser.username = (dictionary["username"] as? String)
-//                        someUser.university = (dictionary["university"] as? String)
-//                        someUser.major = (dictionary["major"] as? String)
-//                        someUser.profileDescription = (dictionary["profileDescription"] as? String)
-//                        self.mappableUsers.append(someUser)
-//                    }
-//                }, withCancel: nil)
+                nearbyUsers.append(otherUser(key: key, otherLocation: location))
             }
         })
+        
+        circleQuery?.observeReady{
+            print("Locations Loaded")
+            for i in 0..<nearbyUsers.count{
+                let filterCheck: Bool = true
+                
+                self.getUserFromFirebase(uid: nearbyUsers[i].key, location: nearbyUsers[i].otherLocation,completion: { (someUser) in
+                    //someUser?.writeData()
+                    if self.dataFilter.university == true {
+                        if someUser?.university != self.currentUser.university{
+                            print("university match")
+                        }
+                    }
+                    
+                    if self.dataFilter.major == true{
+                        if someUser?.major != self.currentUser.major{
+                            print("major match")
+                        }
+                    }
+                    
+                    if self.dataFilter.selectedCourses?.count != 0{
+                        print("courses selected")
+                    }
+                    if filterCheck == true{
+                        self.addUserAnnotation(uid: (someUser?.uid)!, username: (someUser?.username)!, location: (someUser?.location)!)
+                        self.listView.addUser(addedUser: someUser!)
+                    }
+                })
+                
+            }
+    }
+    completion()
+}
+
+    func getUserFromFirebase(uid: String, location: CLLocation, completion: @escaping (User?)-> Void){
+        let usersRef = Database.database().reference().child("users")
+        let someUser = User()
+        usersRef.child(uid).observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                someUser.uid = snapshot.key
+                someUser.location = location
+                someUser.username = (dictionary["username"] as? String)
+                someUser.university = (dictionary["university"] as? String)
+                someUser.major = (dictionary["major"] as? String)
+                
+//                let courseSnap = snapshot.childSnapshot(forPath: "courses")
+//                let someCourse = Course()
+//                if let courseDictionary = courseSnap.value as? [String: AnyObject]{
+//                    someCourse.courseID = courseSnap.key
+//                    someCourse.courseName = courseDictionary["courseName"] as? String
+//                    someCourse.courseCode = courseDictionary["courseCode"] as? String
+//                    someCourse.prof = courseDictionary["prof"] as? String
+//                }
+              
+        
+                
+//                self.getUserCoursesFromFirebase(uid: uid, completion: { (returnedCourses) in
+//                    someUser.courses = returnedCourses
+//                })
+            }
+            completion(someUser)
+        }, withCancel: nil)
+    }
+    
+    func getUserCourseFromFirebase(uid: String, completion: @escaping (Course?)-> Void){
+        let coursesRef = Database.database().reference().child("users").child(uid).child("courses")
+        let someCourse = Course()
+        coursesRef.observeSingleEvent(of: .value, with: { (courseSnap) in
+            if let courseDictionary = courseSnap.value as? [String: AnyObject]{
+                someCourse.courseID = courseSnap.key
+                someCourse.courseName = courseDictionary["courseName"] as? String
+                someCourse.courseCode = courseDictionary["courseCode"] as? String
+                someCourse.prof = courseDictionary["prof"] as? String
+            }
+            completion(someCourse)
+        }, withCancel: nil)
     }
 
     @IBAction func switchView(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            container.bringSubview(toFront: mapView.view)
+            container.bringSubview(toFront: userMapView.view)
         case 1:
             container.bringSubview(toFront: listView.view)
         default:
@@ -125,12 +244,36 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
         
         let region: MKCoordinateRegion = MKCoordinateRegionMake(userCoordinates, span)
         
-        mapView.map.setRegion(region, animated: false)
+        userMapView.map.setRegion(region, animated: false)
         
-        mapView.map.showsUserLocation = false
+        userMapView.map.showsUserLocation = true
         
         addUserLocation()
-        getOtherUsers()
     }
+    
+//    func setNumber(number: Int){
+//        test = number
+//    }
+//
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return test
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cellIndentifier = "discoveryCell"
+//
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIndentifier, for: indexPath) as? ListViewTableViewCell else{
+//            fatalError("Cell could not be instantiated")
+//        }
+//
+//        cell.textLabel?.text = "Username"
+//        cell.detailTextLabel?.text = "Distance"
+//
+//        return cell
+//    }
+//
+//    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+//        print("tapped")
+//    }
     
 }

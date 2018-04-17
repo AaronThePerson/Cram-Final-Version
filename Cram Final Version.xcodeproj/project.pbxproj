@@ -20,6 +20,7 @@
 		F517B0C520755EF0004EC6F0 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F517B0C320755EF0004EC6F0 /* ListViewController.swift */; };
 		F517B0C620755EF0004EC6F0 /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F517B0C420755EF0004EC6F0 /* ListViewController.xib */; };
 		F517B0C820756865004EC6F0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F517B0C720756865004EC6F0 /* CoreLocation.framework */; };
+		F51E6CCD2085560100508571 /* StudentPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51E6CCC2085560100508571 /* StudentPoint.swift */; };
 		F53DB9AD206C2FD700055A16 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DB9AC206C2FD700055A16 /* User.swift */; };
 		F53DB9AF206C2FE800055A16 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DB9AE206C2FE800055A16 /* Course.swift */; };
 		F53DB9B3206C3CF600055A16 /* AddCourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DB9B2206C3CF600055A16 /* AddCourseTableViewCell.swift */; };
@@ -29,6 +30,8 @@
 		F55D6D13206AC09800234187 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F55D6D12206AC09800234187 /* MapKit.framework */; };
 		F55D6D15206AC24900234187 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F55D6D14206AC24900234187 /* GoogleService-Info.plist */; };
 		F578616A207D9B3300B21696 /* AddCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5786169207D9B3300B21696 /* AddCourseViewController.swift */; };
+		F578616D207DB37E00B21696 /* ListViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F578616B207DB37E00B21696 /* ListViewTableViewCell.swift */; };
+		F578616E207DB37E00B21696 /* ListViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F578616C207DB37E00B21696 /* ListViewTableViewCell.xib */; };
 		F5961A0720668B73005151EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5961A0620668B73005151EA /* AppDelegate.swift */; };
 		F5961A0920668B73005151EA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5961A0820668B73005151EA /* LoginViewController.swift */; };
 		F5961A0C20668B73005151EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5961A0A20668B73005151EA /* Main.storyboard */; };
@@ -80,6 +83,7 @@
 		F517B0C320755EF0004EC6F0 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		F517B0C420755EF0004EC6F0 /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
 		F517B0C720756865004EC6F0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F51E6CCC2085560100508571 /* StudentPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentPoint.swift; sourceTree = "<group>"; };
 		F53DB9AC206C2FD700055A16 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F53DB9AE206C2FE800055A16 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		F53DB9B2206C3CF600055A16 /* AddCourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseTableViewCell.swift; sourceTree = "<group>"; };
@@ -90,6 +94,8 @@
 		F55D6D12206AC09800234187 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F55D6D14206AC24900234187 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F5786169207D9B3300B21696 /* AddCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseViewController.swift; sourceTree = "<group>"; };
+		F578616B207DB37E00B21696 /* ListViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewTableViewCell.swift; sourceTree = "<group>"; };
+		F578616C207DB37E00B21696 /* ListViewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewTableViewCell.xib; sourceTree = "<group>"; };
 		F5961A0320668B73005151EA /* Cram Final Version.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cram Final Version.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5961A0620668B73005151EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5961A0820668B73005151EA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +192,9 @@
 				F517B0C320755EF0004EC6F0 /* ListViewController.swift */,
 				F517B0C420755EF0004EC6F0 /* ListViewController.xib */,
 				F5580684207AAF2B0005C3FB /* FilterCourseTableViewCell.swift */,
+				F578616B207DB37E00B21696 /* ListViewTableViewCell.swift */,
+				F578616C207DB37E00B21696 /* ListViewTableViewCell.xib */,
+				F51E6CCC2085560100508571 /* StudentPoint.swift */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -422,6 +431,7 @@
 				F5961A1420668B73005151EA /* LaunchScreen.storyboard in Resources */,
 				F517B0C620755EF0004EC6F0 /* ListViewController.xib in Resources */,
 				F55D6D15206AC24900234187 /* GoogleService-Info.plist in Resources */,
+				F578616E207DB37E00B21696 /* ListViewTableViewCell.xib in Resources */,
 				F517B0C220755ED3004EC6F0 /* MapViewController.xib in Resources */,
 				F5961A0C20668B73005151EA /* Main.storyboard in Resources */,
 			);
@@ -590,6 +600,7 @@
 				F5CAF547206AAA5200BC8E39 /* SignUpViewController.swift in Sources */,
 				F558867B20715D5900830FD1 /* Post.swift in Sources */,
 				F5BD921E206B253300CF6E4A /* AddCourseTableViewController.swift in Sources */,
+				F578616D207DB37E00B21696 /* ListViewTableViewCell.swift in Sources */,
 				F578616A207D9B3300B21696 /* AddCourseViewController.swift in Sources */,
 				F53DB9B3206C3CF600055A16 /* AddCourseTableViewCell.swift in Sources */,
 				F5072F2C20752D4300D31C59 /* ChatLogTableViewController.swift in Sources */,
@@ -603,6 +614,7 @@
 				F5580686207AAF2B0005C3FB /* FilterCourseTableViewCell.swift in Sources */,
 				F5072F262075227400D31C59 /* PostsTableViewController.swift in Sources */,
 				F5961A0720668B73005151EA /* AppDelegate.swift in Sources */,
+				F51E6CCD2085560100508571 /* StudentPoint.swift in Sources */,
 				F5CAF53F206A9E4300BC8E39 /* ProfileViewController.swift in Sources */,
 				F5072F2A2075239100D31C59 /* PostsTableViewCell.swift in Sources */,
 				F517B0C520755EF0004EC6F0 /* ListViewController.swift in Sources */,

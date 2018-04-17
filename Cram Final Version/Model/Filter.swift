@@ -14,9 +14,10 @@ class Filter: NSObject {
     var major: Bool?
     var selectedCourses: [Course]?
     
-    init(distance: Int, university: Bool, major: Bool) {
+    init(distance: Int, university: Bool, major: Bool, selectedCourses: [Course]) {
         self.distance = distance
         self.university = university
         self.major = major
+        self.selectedCourses = selectedCourses
     }
 }
