@@ -24,7 +24,7 @@ class ViewProfileViewController: UIViewController {
     }
     
     @IBAction func BackToDiscover(_ sender: Any) {
-        performSegue(withIdentifier: "backToSearching", sender: Any?.self)
+        dismiss(animated: true, completion: nil)
     }
     
 

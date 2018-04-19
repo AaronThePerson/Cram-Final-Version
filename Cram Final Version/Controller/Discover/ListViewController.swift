@@ -25,14 +25,13 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         userList.register(nib, forCellReuseIdentifier: "discoveryCell")
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func resetToNil(){
         currentLocation = CLLocation()
+        otherUsers = []
+    }
+    
+    func resetUsersArray(){
         otherUsers = []
     }
     
@@ -64,21 +63,18 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         
         cell.textLabel?.text = otherUsers[indexPath.row].username
-        cell.detailTextLabel?.text = String(format: "%.3f", calculateDistance(otherlocation: otherUsers[indexPath.row].location!)) + " miles"
+                cell.detailTextLabel?.text = String(format: "%.3f", calculateDistance(otherlocation: otherUsers[indexPath.row].location!)) + " miles"
         cell.accessoryType = UITableViewCellAccessoryType.detailButton
         
         return cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToViewProfile"{
-            let vc = segue.destination as! ViewProfileViewController
-            vc.uid = viewProfileUID
-        }
-    }
-    
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        performSegue(withIdentifier: "goToViewProfile", sender: Any?.self)
+        //performSegue(withIdentifier: "goToViewProfile", sender: Any?.self)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "viewProfile") as! ViewProfileViewController
+        vc.uid = otherUsers[indexPath.row].uid
+        self.show(vc, sender: self)
         print("tapped")
     }
 

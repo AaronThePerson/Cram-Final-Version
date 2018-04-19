@@ -560,7 +560,7 @@
                     </view>
                     <connections>
                         <outlet property="uidLabel" destination="94S-JY-c9K" id="9wd-a8-xjI"/>
-                        <segue destination="4Fe-IQ-GjZ" kind="show" identifier="backToSearching" id="Bze-bF-5YE"/>
+                        <segue destination="4Fe-IQ-GjZ" kind="showDetail" identifier="backToSearching" animates="NO" id="Bze-bF-5YE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x0D-Ir-XtH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -737,7 +737,7 @@
         <!--discoverVC-->
         <scene sceneID="aor-ct-VwW">
             <objects>
-                <viewController title="discoverVC" id="4Fe-IQ-GjZ" customClass="DiscoverViewController" customModule="Cram_Final_Version" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="discoverVC" title="discoverVC" id="4Fe-IQ-GjZ" customClass="DiscoverViewController" customModule="Cram_Final_Version" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sW9-zg-Zrk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -796,7 +796,7 @@
                         <outlet property="container" destination="5Mc-SA-otw" id="09i-za-NN0"/>
                         <outlet property="mapListController" destination="5aj-Gg-XOf" id="hQg-2v-MUv"/>
                         <segue destination="QIY-w5-VfP" kind="presentation" identifier="goToFilter" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="Ts4-Px-gud"/>
-                        <segue destination="Fon-dt-k34" kind="show" identifier="goToViewProfile" id="bXS-Rm-VzP"/>
+                        <segue destination="Fon-dt-k34" kind="showDetail" identifier="goToViewProfile" id="bXS-Rm-VzP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Hh-LH-byM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1021,9 +1021,9 @@
         <image name="profile icon" width="33" height="33"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bXS-Rm-VzP"/>
+        <segue reference="jEq-yk-6TC"/>
         <segue reference="2V9-dh-CqP"/>
-        <segue reference="Bze-bF-5YE"/>
+        <segue reference="4Dj-08-oww"/>
         <segue reference="1le-jH-spo"/>
         <segue reference="l9P-cE-oY6"/>
     </inferredMetricsTieBreakers>

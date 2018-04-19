@@ -16,6 +16,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var map: MKMapView!
     
     var currentLocation = CLLocation()
+    var uid: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,13 +52,17 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         return annotationView
     }
     
-//    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-//        mapView.selectAnnotation(annotaion, animated: true)
-//    }
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        uid = (view.annotation as! StudentPoint).uid
+    }
     
-//    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-//
-//    }
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "viewProfile") as! ViewProfileViewController
+        vc.uid = uid
+        self.show(vc, sender: self)
+        print("tapped")
+    }
     
     func setCurrentUserLocation(userLocation: CLLocation){
         currentLocation = userLocation

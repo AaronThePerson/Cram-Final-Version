@@ -46,6 +46,7 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         getOtherUsers{
             for i in 0..<self.mappableUsers.count{
                 self.mappableUsers[i].writeData()
@@ -134,7 +135,7 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
         self.miles = Double(self.dataFilter.distance!) * self.kiloToMile
         let circleQuery = self.locationRef?.query(at: self.userLocation, withRadius: self.miles!)
         self.userMapView.resetAnnotations()
-        self.mappableUsers = [] //clear old user data
+        self.listView.resetUsersArray()
         circleQuery?.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
             if key != Auth.auth().currentUser?.uid{
                 nearbyUsers.append(otherUser(key: key, otherLocation: location))
