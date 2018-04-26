@@ -42,6 +42,7 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
         prepareDatabase()
         prepareUI()
         prepareLocation()
+        prepareCurrentUser()
     }
     
     override func viewDidAppear(_ animated: Bool) {

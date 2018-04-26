@@ -27,5 +27,11 @@ class ViewProfileViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-
+    @IBAction func addFriend(_ sender: Any) {
+        
+    }
+    
+    @IBAction func chatWith(_ sender: Any) {
+        
+    }
 }

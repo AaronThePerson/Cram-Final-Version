@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import CoreLocation
 
 class Post: NSObject {
+    var postID: String?
     var title: String?
     var username: String?
+    var uid: String?
     var postDescription: String?
+    var timeStamp: Int64?
 }
