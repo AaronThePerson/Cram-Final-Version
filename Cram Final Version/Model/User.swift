@@ -16,9 +16,11 @@ class User: NSObject {
     var major: String?
     var profileDescription: String?
     var profilePic: UIImage?
-    var courses: [Course]?
+    var courses: [Course] = []
     var location: CLLocation?
     var distance: CLLocationDistance?
+    var friends: [Friend] = []
+    var groups: [Group] = []
  
     public func writeData(){
         print("uid: " + uid!)
@@ -26,8 +28,9 @@ class User: NSObject {
         print("university: " + university!)
         print("major: " + major!)
         print("courses: ")
-//        let courseNum = courses?.count
-//        for i in 0...courseNum!-1{
+//        print(courses?.count)
+//        let courseNum: Int = (courses?.count)!
+//        for i in 0..<courseNum{
 //            print("course name: " + courses![i].courseName!)
 //        }
     }

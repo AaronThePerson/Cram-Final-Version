@@ -17,18 +17,20 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var mapListController: UISegmentedControl!
     
+    let ref = Database.database().reference(fromURL: "https://cram-capstone.firebaseio.com/")
+    let usersRef = Database.database().reference().child("users")
+    
     let userMapView = MapViewController()
     let listView = ListViewController()
     var userTable = UITableView()
     
     var dataFilter = Filter(distance: 5, university: false, major: false, selectedCourses: [])
     
-    let currentUser = User()
+    var currentUser: User?
     var userLocation = CLLocation()
     var userCoordinates: CLLocationCoordinate2D!
     let manager = CLLocationManager()
     
-    var ref: DatabaseReference?
     var locationRef: GeoFire?
     var mappableUsers = [User]()
     
@@ -75,7 +77,6 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
         listView.resetToNil()
         addUserLocation()
         getOtherUsers {
-            print(self.mappableUsers.count)
             for i in 0..<self.mappableUsers.count{
                 self.mappableUsers[i].writeData()
             }
@@ -83,8 +84,7 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
     }
     
     private func prepareDatabase(){
-        ref = Database.database().reference(fromURL: "https://cram-capstone.firebaseio.com/")
-        locationRef = GeoFire(firebaseRef: (ref?.child("locations"))!)
+        locationRef = GeoFire(firebaseRef: (ref.child("locations")))
     }
     
     private func prepareLocation(){
@@ -104,18 +104,16 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
     }
     
     private func prepareCurrentUser(){
-        Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: DataEventType.value) { (snapshot) in
-            if let dictionary = snapshot.value as? [String: AnyObject]{
-                self.currentUser.university = (dictionary["university"] as? String)
-                self.currentUser.major = (dictionary["major"] as? String)
-                self.currentUser.profileDescription = (dictionary["profileDescription"] as? String)
-                self.currentUser.uid = snapshot.key
-            }
+        getUserFromFirebase(uid: (Auth.auth().currentUser?.uid)!, location: userLocation) { (returnedUser) in
+            self.currentUser = returnedUser!
+            self.userMapView.setCurrentUser(someUser: self.currentUser!)
+            self.listView.setCurrentUser(someUser: self.currentUser!)
         }
     }
     
     private func addUserLocation(){
         userLocation = CLLocation(latitude: userCoordinates.latitude, longitude: userCoordinates.longitude)
+        currentUser?.location = userLocation
         locationRef?.setLocation(userLocation, forKey: (Auth.auth().currentUser?.uid)!)
         listView.setCurrentUserLocation(userLocation: userLocation)
         userMapView.setCurrentUserLocation(userLocation: userLocation)
@@ -144,20 +142,19 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
         })
         
         circleQuery?.observeReady{
-            print("Locations Loaded")
             for i in 0..<nearbyUsers.count{
                 let filterCheck: Bool = true
                 
                 self.getUserFromFirebase(uid: nearbyUsers[i].key, location: nearbyUsers[i].otherLocation,completion: { (someUser) in
-                    //someUser?.writeData()
+                    
                     if self.dataFilter.university == true {
-                        if someUser?.university != self.currentUser.university{
+                        if someUser?.university != self.currentUser?.university{
                             print("university match")
                         }
                     }
                     
                     if self.dataFilter.major == true{
-                        if someUser?.major != self.currentUser.major{
+                        if someUser?.major != self.currentUser?.major{
                             print("major match")
                         }
                     }
@@ -170,53 +167,55 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
                         self.listView.addUser(addedUser: someUser!)
                     }
                 })
-                
             }
     }
     completion()
 }
 
     func getUserFromFirebase(uid: String, location: CLLocation, completion: @escaping (User?)-> Void){
-        let usersRef = Database.database().reference().child("users")
+        let usersRef = ref.child("users")
         let someUser = User()
         usersRef.child(uid).observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String: AnyObject]{
-                someUser.uid = snapshot.key
-                someUser.location = location
-                someUser.username = (dictionary["username"] as? String)
-                someUser.university = (dictionary["university"] as? String)
-                someUser.major = (dictionary["major"] as? String)
-                
-//                let courseSnap = snapshot.childSnapshot(forPath: "courses")
-//                let someCourse = Course()
-//                if let courseDictionary = courseSnap.value as? [String: AnyObject]{
-//                    someCourse.courseID = courseSnap.key
-//                    someCourse.courseName = courseDictionary["courseName"] as? String
-//                    someCourse.courseCode = courseDictionary["courseCode"] as? String
-//                    someCourse.prof = courseDictionary["prof"] as? String
-//                }
-              
-        
-                
-//                self.getUserCoursesFromFirebase(uid: uid, completion: { (returnedCourses) in
-//                    someUser.courses = returnedCourses
-//                })
+            someUser.uid = snapshot.key
+            someUser.location = location
+            let snapChildren = snapshot.children
+            while let data = snapChildren.nextObject() as? DataSnapshot{
+                switch data.key{
+                case "major":
+                    someUser.major = data.value as? String
+                case "university":
+                    someUser.university = data.value as? String
+                case "username":
+                    someUser.username = data.value as? String
+                case "profileDescription":
+                    someUser.username = data.value as? String
+                case "profilePicURL": break
+                case "courses":
+                    let courseSnap = data.children
+                    while let courseKey = courseSnap.nextObject() as? DataSnapshot{
+                        let someCourse = Course()
+                        if let courseDictionary = courseKey.value as? [String: AnyObject]{
+                            someCourse.courseID = courseKey.key
+                            someCourse.courseName = courseDictionary["courseName"] as? String
+                            someCourse.courseCode = courseDictionary["courseCode"] as? String
+                            someCourse.prof = courseDictionary["prof"] as? String
+                        }
+                        someUser.courses.append(someCourse)
+                    }
+                case "friends":
+                    let friendSnap = data.children
+                    while let friendKey = friendSnap.nextObject() as? DataSnapshot{
+                        if let friendDictionary = friendKey.value as? [String: AnyObject]{
+                            let id = friendKey.key
+                            let username = friendDictionary["username"] as? String
+                            someUser.friends.append(Friend(uid: id, username: username!))
+                        }
+                    }
+                    print(someUser.friends.count)
+                default: break
+                }
             }
             completion(someUser)
-        }, withCancel: nil)
-    }
-    
-    func getUserCourseFromFirebase(uid: String, completion: @escaping (Course?)-> Void){
-        let coursesRef = Database.database().reference().child("users").child(uid).child("courses")
-        let someCourse = Course()
-        coursesRef.observeSingleEvent(of: .value, with: { (courseSnap) in
-            if let courseDictionary = courseSnap.value as? [String: AnyObject]{
-                someCourse.courseID = courseSnap.key
-                someCourse.courseName = courseDictionary["courseName"] as? String
-                someCourse.courseCode = courseDictionary["courseCode"] as? String
-                someCourse.prof = courseDictionary["prof"] as? String
-            }
-            completion(someCourse)
         }, withCancel: nil)
     }
 

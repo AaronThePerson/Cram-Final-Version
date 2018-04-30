@@ -14,6 +14,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var userList: UITableView!
     
     var currentLocation = CLLocation()
+    var currentUser: User?
     var otherUsers = [User]()
     var viewProfileUID: String? = ""
     
@@ -42,6 +43,10 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func addUser(addedUser: User){
         otherUsers.append(addedUser)
         userList.reloadData()
+    }
+    
+    func setCurrentUser(someUser: User){
+        currentUser = someUser
     }
     
     func calculateDistance(otherlocation: CLLocation) -> Double{
@@ -73,9 +78,9 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //performSegue(withIdentifier: "goToViewProfile", sender: Any?.self)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "viewProfile") as! ViewProfileViewController
-        vc.uid = otherUsers[indexPath.row].uid
+        vc.otherUser = otherUsers[indexPath.row]
+        vc.currentUser = currentUser
         self.show(vc, sender: self)
-        print("tapped")
     }
 
 }

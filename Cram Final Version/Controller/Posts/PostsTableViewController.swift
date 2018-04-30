@@ -97,7 +97,6 @@ class PostsTableViewController: UITableViewController, CLLocationManagerDelegate
                     self.posts.append(somePost!)
                     self.posts = self.posts.sorted(by: {$0.timeStamp! > $1.timeStamp!})
                     self.tableView.reloadData()
-
                 })
             }
             completion()
@@ -112,7 +111,6 @@ class PostsTableViewController: UITableViewController, CLLocationManagerDelegate
                     somePost.uid = dictionary["uid"] as? String
                     somePost.username = dictionary["username"] as? String
                     somePost.postDescription = dictionary["description"] as? String
-                    print(somePost.postDescription!)
                     somePost.timeStamp = Int64((dictionary["timestamp"] as! Int64))
                 }
                 completion(somePost)
@@ -136,6 +134,17 @@ class PostsTableViewController: UITableViewController, CLLocationManagerDelegate
         performSegue(withIdentifier: "createPost", sender: Any?.self)
     }
     
+    func convertTimestamp(timestamp: Int64)->String{
+        let dateNum = timestamp/1000
+        let date = Date(timeIntervalSince1970: TimeInterval(dateNum))
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        
+        return dateFormatter.string(from: date)
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -149,6 +158,7 @@ class PostsTableViewController: UITableViewController, CLLocationManagerDelegate
         
         cell.titleLabel.text = posts[indexPath.row].title
         cell.descriptionLabel.text = posts[indexPath.row].postDescription
+        cell.timeLabel.text = convertTimestamp(timestamp: posts[indexPath.row].timeStamp!)
         
         return cell
     }
@@ -156,5 +166,6 @@ class PostsTableViewController: UITableViewController, CLLocationManagerDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedPost = posts[indexPath.row]
         performSegue(withIdentifier: "postDetails", sender: Any?.self)
+        
     }
 }

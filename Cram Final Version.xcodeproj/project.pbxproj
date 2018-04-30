@@ -15,6 +15,7 @@
 		F5072F2C20752D4300D31C59 /* ChatLogTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5072F2B20752D4300D31C59 /* ChatLogTableViewController.swift */; };
 		F5072F322075312F00D31C59 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5072F312075312F00D31C59 /* DiscoverViewController.swift */; };
 		F5072F3820753F2000D31C59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5072F3720753F2000D31C59 /* Assets.xcassets */; };
+		F5103B56209601E300BC05F6 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5103B55209601E300BC05F6 /* Message.swift */; };
 		F517B0C120755ED3004EC6F0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F517B0BF20755ED3004EC6F0 /* MapViewController.swift */; };
 		F517B0C220755ED3004EC6F0 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F517B0C020755ED3004EC6F0 /* MapViewController.xib */; };
 		F517B0C520755EF0004EC6F0 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F517B0C320755EF0004EC6F0 /* ListViewController.swift */; };
@@ -30,6 +31,8 @@
 		F5580681207A8C710005C3FB /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5580680207A8C710005C3FB /* Filter.swift */; };
 		F5580686207AAF2B0005C3FB /* FilterCourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5580684207AAF2B0005C3FB /* FilterCourseTableViewCell.swift */; };
 		F558867B20715D5900830FD1 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F558867A20715D5900830FD1 /* Post.swift */; };
+		F55B75E3209262860015BB0E /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55B75E2209262860015BB0E /* Group.swift */; };
+		F55B75E520926B9C0015BB0E /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55B75E420926B9C0015BB0E /* CreateGroupViewController.swift */; };
 		F55D6D13206AC09800234187 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F55D6D12206AC09800234187 /* MapKit.framework */; };
 		F55D6D15206AC24900234187 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F55D6D14206AC24900234187 /* GoogleService-Info.plist */; };
 		F572EF68209220A200A5D87C /* ChatLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F572EF67209220A200A5D87C /* ChatLogViewController.swift */; };
@@ -83,6 +86,8 @@
 		F5072F2B20752D4300D31C59 /* ChatLogTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogTableViewController.swift; sourceTree = "<group>"; };
 		F5072F312075312F00D31C59 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		F5072F3720753F2000D31C59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F5103B542095F07800BC05F6 /* Cram Final Version.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Cram Final Version.entitlements"; sourceTree = "<group>"; };
+		F5103B55209601E300BC05F6 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		F517B0BF20755ED3004EC6F0 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		F517B0C020755ED3004EC6F0 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		F517B0C320755EF0004EC6F0 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +104,8 @@
 		F5580680207A8C710005C3FB /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		F5580684207AAF2B0005C3FB /* FilterCourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCourseTableViewCell.swift; sourceTree = "<group>"; };
 		F558867A20715D5900830FD1 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		F55B75E2209262860015BB0E /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		F55B75E420926B9C0015BB0E /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		F55D6D12206AC09800234187 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F55D6D14206AC24900234187 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F572EF67209220A200A5D87C /* ChatLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +184,8 @@
 				F53DB9AE206C2FE800055A16 /* Course.swift */,
 				F5580680207A8C710005C3FB /* Filter.swift */,
 				F58EF562208BAA4900D32905 /* Friend.swift */,
+				F55B75E2209262860015BB0E /* Group.swift */,
+				F5103B55209601E300BC05F6 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -225,6 +234,7 @@
 				F5072F2B20752D4300D31C59 /* ChatLogTableViewController.swift */,
 				F572EF67209220A200A5D87C /* ChatLogViewController.swift */,
 				F572EF692092223400A5D87C /* ChatLogTableViewCell.swift */,
+				F55B75E420926B9C0015BB0E /* CreateGroupViewController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -289,6 +299,7 @@
 		F5961A0520668B73005151EA /* Cram Final Version */ = {
 			isa = PBXGroup;
 			children = (
+				F5103B542095F07800BC05F6 /* Cram Final Version.entitlements */,
 				F50CF6F1206C2F4200F5D682 /* Model */,
 				F50CF6F2206C2F5400F5D682 /* Controller */,
 				F5961A0620668B73005151EA /* AppDelegate.swift */,
@@ -400,7 +411,13 @@
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -631,8 +648,11 @@
 				F5961A0920668B73005151EA /* LoginViewController.swift in Sources */,
 				F572EF68209220A200A5D87C /* ChatLogViewController.swift in Sources */,
 				F5580686207AAF2B0005C3FB /* FilterCourseTableViewCell.swift in Sources */,
+				F5103B56209601E300BC05F6 /* Message.swift in Sources */,
+				F55B75E520926B9C0015BB0E /* CreateGroupViewController.swift in Sources */,
 				F5072F262075227400D31C59 /* PostsTableViewController.swift in Sources */,
 				F5961A0720668B73005151EA /* AppDelegate.swift in Sources */,
+				F55B75E3209262860015BB0E /* Group.swift in Sources */,
 				F572EF6A2092223400A5D87C /* ChatLogTableViewCell.swift in Sources */,
 				F51E6CCD2085560100508571 /* StudentPoint.swift in Sources */,
 				F5CAF53F206A9E4300BC8E39 /* ProfileViewController.swift in Sources */,
@@ -810,6 +830,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Cram Final Version/Cram Final Version.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UBWPYUEANY;
 				INFOPLIST_FILE = "Cram Final Version/Info.plist";
@@ -828,6 +849,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Cram Final Version/Cram Final Version.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UBWPYUEANY;
 				INFOPLIST_FILE = "Cram Final Version/Info.plist";
@@ -844,7 +866,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 66074E90A0BA377925A676E6 /* Pods-Cram Final VersionTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UBWPYUEANY;
@@ -862,7 +884,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 76BB8263B0D5E0BB12DE73CB /* Pods-Cram Final VersionTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UBWPYUEANY;

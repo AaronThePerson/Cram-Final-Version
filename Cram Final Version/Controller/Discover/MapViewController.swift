@@ -16,6 +16,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var map: MKMapView!
     
     var currentLocation = CLLocation()
+    var currentUser: User?
+    var userProfiles: [String: User] = [:]
     var uid: String?
     
     override func viewDidLoad() {
@@ -30,7 +32,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         guard let annotation = annotation as? StudentPoint else{
             return nil
         }
-        
         
         let identifier = "student"
         
@@ -59,9 +60,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "viewProfile") as! ViewProfileViewController
-        vc.uid = uid
+        vc.otherUser = userProfiles[uid!]
+        vc.currentUser = currentUser
         self.show(vc, sender: self)
-        print("tapped")
     }
     
     func setCurrentUserLocation(userLocation: CLLocation){
@@ -74,9 +75,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func addUserAnnotation(someUser: User){
+        userProfiles[someUser.uid!] = someUser
         let distance = String(format: "%.3f", calculateDistance(otherlocation: someUser.location!)) + " miles"
         let annotation = StudentPoint(username: someUser.username!, distance: distance, uid: someUser.uid!, location: someUser.location!)
         map.addAnnotation(annotation)
+    }
+    
+    func setCurrentUser(someUser: User){
+        currentUser = someUser
     }
     
     func resetAnnotations(){ //clear old data from map
