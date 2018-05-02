@@ -32,9 +32,10 @@ class ChatLogTableViewController: UITableViewController, NewGroupHandler {
             for i in 0..<num{
                 self.getGroupData(groupID: self.groups[i].groupID, groupNumber: i, completion: { (someGroup) in
                     self.groups[i] = someGroup
+                    self.tableView.reloadData()
                 })
             }
-            self.tableView.reloadData()
+            //self.tableView.reloadData()
         }
     }
 
@@ -63,7 +64,6 @@ class ChatLogTableViewController: UITableViewController, NewGroupHandler {
             
             let snapGroups = snapshot.children
             while let data = snapGroups.nextObject() as? DataSnapshot{
-                print(snapshot)
                 switch data.key{
                 case "groupName":
                     groupName = (data.value as? String)!
@@ -111,11 +111,11 @@ class ChatLogTableViewController: UITableViewController, NewGroupHandler {
         
         cell.textLabel?.text = groups[indexPath.row].groupName
         cell.detailTextLabel?.text = groups[indexPath.row].lastMessage
+        print(groups[indexPath.row].lastMessage)
         
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(groups[indexPath.row].groupName)
         self.selectedGroup = self.groups[indexPath.row]
         performSegue(withIdentifier: "goToChatLog", sender: Any?.self)
     }

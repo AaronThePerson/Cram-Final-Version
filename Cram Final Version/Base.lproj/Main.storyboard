@@ -1082,6 +1082,9 @@
                     <navigationItem key="navigationItem" title="Group Name" id="Ia8-QN-u25">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="ePf-9l-gKW"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="chatTitle" destination="Ia8-QN-u25" id="lyy-jp-hsT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="urz-Y2-tao" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

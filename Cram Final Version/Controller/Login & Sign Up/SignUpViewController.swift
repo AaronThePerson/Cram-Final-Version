@@ -182,38 +182,43 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         
         Auth.auth().createUser(withEmail: email, password: password) { (userApp, signUpError) in
             if signUpError != nil{
-                print(signUpError!)
+                self.errorAlert(alertTitle: "Sign Up Error", alertText: (signUpError?.localizedDescription)!)
                 return
-            }
-            
-            guard let uid = Auth.auth().currentUser?.uid else{
-                return
-            }
-
-            if self.photoChanged{
-                let storageRef = Storage.storage().reference().child("profile_images").child("\(uid)profileImage.jpeg")
-                
-                if let uploadData = UIImageJPEGRepresentation(self.profilePic.image!, 0.1){
-                    storageRef.putData(uploadData, metadata: nil, completion: { (metadata, uploadError) in
-                        if uploadError != nil{
-                            print(uploadError!)
-                            return
-                        }
-                        let photoURL = metadata?.downloadURL()?.absoluteString
-                        
-                         let values = ["username": username, "email": email, "university": university, "major": major, "profileDescription": profileDescription, "profilePicURL": photoURL]
-                        self.addUserData(uid: uid, values: values as [String : AnyObject])
-                    })
+            }else{
+                guard let uid = Auth.auth().currentUser?.uid else{
+                    return
                 }
-            }
-            else{
-                 let values = ["username": username, "email": email, "university": university, "major": major, "profileDescription": profileDescription, "profilePicURL": "default"]
-                self.addUserData(uid: uid, values: values as [String : AnyObject])
-            }
 
-        }
-    
-        setupDone(email: email, password: password)
+                if self.photoChanged{
+                    let storageRef = Storage.storage().reference().child("profile_images").child("\(uid)profileImage.jpeg")
+                    
+                    if let uploadData = UIImageJPEGRepresentation(self.profilePic.image!, 0.1){
+                        storageRef.putData(uploadData, metadata: nil, completion: { (metadata, uploadError) in
+                            if uploadError != nil{
+                                print(uploadError!)
+                                return
+                            }
+                            let photoURL = metadata?.downloadURL()?.absoluteString
+                            
+                             let values = ["username": username, "email": email, "university": university, "major": major, "profileDescription": profileDescription, "profilePicURL": photoURL]
+                            self.addUserData(uid: uid, values: values as [String : AnyObject])
+                        })
+                    }
+                }
+                else{
+                     let values = ["username": username, "email": email, "university": university, "major": major, "profileDescription": profileDescription, "profilePicURL": "default"]
+                    self.addUserData(uid: uid, values: values as [String : AnyObject])
+                }
+
+            }
         
+            self.setupDone(email: email, password: password)
+        }
+    }
+    
+    func errorAlert(alertTitle: String, alertText: String){
+        let errorPopup = UIAlertController(title: alertTitle, message: alertText, preferredStyle: UIAlertControllerStyle.alert)
+        errorPopup.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil))
+        present(errorPopup, animated: true, completion: nil)
     }
 }

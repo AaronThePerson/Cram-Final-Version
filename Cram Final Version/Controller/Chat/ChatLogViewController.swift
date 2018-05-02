@@ -15,6 +15,7 @@ import Firebase
 
 class ChatLogViewController: MessagesViewController {
     
+    @IBOutlet weak var chatTitle: UINavigationItem!
     var selectedGroup: Group?
     
     let ref = Database.database().reference(fromURL: "https://cram-capstone.firebaseio.com/")
@@ -34,6 +35,7 @@ class ChatLogViewController: MessagesViewController {
         messageInputBar.delegate = self as? MessageInputBarDelegate
         
         self.iMessage()
+        chatTitle.title = selectedGroup?.groupName
     }
     
     override func viewDidAppear(_ animated: Bool) {
