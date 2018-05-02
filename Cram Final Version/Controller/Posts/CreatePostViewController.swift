@@ -47,6 +47,7 @@ class CreatePostViewController: UIViewController {
     func prepareUI(){
         createWindow.layer.cornerRadius = 5
         postButton.layer.cornerRadius = 5
+        descriptionField.text = ""
     }
     
     @IBAction func createPost(_ sender: Any) {

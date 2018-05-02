@@ -14,7 +14,7 @@ class ChatLogTableViewController: UITableViewController, NewGroupHandler {
     let ref = Database.database().reference(fromURL: "https://cram-capstone.firebaseio.com/")
     
     var groups: [Group] = []
-    var selectedGroupNum = 0
+    var selectedGroup: Group?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,9 @@ class ChatLogTableViewController: UITableViewController, NewGroupHandler {
         getUserGroups{
             let num: Int = self.groups.count
             for i in 0..<num{
-                self.getGroupData(groupID: self.groups[i].groupID, groupNumber: i)
+                self.getGroupData(groupID: self.groups[i].groupID, groupNumber: i, completion: { (someGroup) in
+                    self.groups[i] = someGroup
+                })
             }
             self.tableView.reloadData()
         }
@@ -50,31 +52,48 @@ class ChatLogTableViewController: UITableViewController, NewGroupHandler {
         }, withCancel: nil)
     }
     
-    func getGroupData(groupID: String, groupNumber: Int){
+    func getGroupData(groupID: String, groupNumber: Int, completion: @escaping (Group)->Void){
         ref.child("groups").child(groupID).observeSingleEvent(of: .value) { (snapshot) in
+            
+            var groupName: String = ""
+            var lastMessage: String = ""
+            var timestamp: Date?
+            var members: [Friend] = []
+            var someGroup: Group?
+            
             let snapGroups = snapshot.children
             while let data = snapGroups.nextObject() as? DataSnapshot{
+                print(snapshot)
                 switch data.key{
                 case "groupName":
-                    self.groups[groupNumber].groupName = (data.value as? String)!
+                    groupName = (data.value as? String)!
                 case "lastMessage":
-                    self.groups[groupNumber].lastMessage = (data.value as? String)!
+                    lastMessage = (data.value as? String)!
                 case "timestamp":
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-                    self.groups[groupNumber].timestamp = dateFormatter.date(from: (data.value as? String)!)!
+                    timestamp = dateFormatter.date(from: (data.value as? String)!)!
                 case "members":
                     let memberSnap = data.children
                     while let memberData = memberSnap.nextObject() as? DataSnapshot{
                         let memberId = memberData.key
                         let memberName = memberData.value as? String
-                        self.groups[groupNumber].members?.append(Friend(uid: memberId, username: memberName!))
+                        let friend = Friend(uid: memberId, username: memberName!)
+                        members.append(friend)
                     }
                 default: break
                 }
+                if timestamp == nil || lastMessage == ""{
+                    someGroup = Group(groupName: groupName, groupID: groupID, members: members)
+                }
+                else{
+                    someGroup = Group(groupName: groupName, groupID: groupID, members: members, lastMessage: lastMessage, timestamp: timestamp!)
+                }
             }
+            completion(someGroup!)
         }
     }
+    
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -96,9 +115,8 @@ class ChatLogTableViewController: UITableViewController, NewGroupHandler {
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedGroupNum = indexPath.row
-        print(indexPath.row)
         print(groups[indexPath.row].groupName)
+        self.selectedGroup = self.groups[indexPath.row]
         performSegue(withIdentifier: "goToChatLog", sender: Any?.self)
     }
 
@@ -113,7 +131,7 @@ class ChatLogTableViewController: UITableViewController, NewGroupHandler {
         }
         else if segue.identifier == "goToChatLog"{
             let vc = segue.destination as! ChatLogViewController
-            vc.selectedGroup = groups[selectedGroupNum]
+            vc.selectedGroup = selectedGroup
         }
     }
 

@@ -65,20 +65,21 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     private func fetchCourses() {
-        
-        Database.database().reference().child("users").child(self.uid!).child("courses").observe(.childAdded, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String: AnyObject]{
-                print(snapshot)
-                let someCourse = Course()
-                someCourse.courseID = snapshot.key
-                someCourse.courseName = (dictionary["courseName"] as? String)!
-                someCourse.courseCode = (dictionary["courseCode"] as? String)!
-                someCourse.prof = (dictionary["prof"] as? String)!
-                self.courses.append(someCourse)
-                self.courseTable.reloadData()
-            }
-            
-        }, withCancel: nil)
+        if Auth.auth().currentUser != nil{
+            ref.child("users").child(self.uid!).child("courses").observe(.childAdded, with: { (snapshot) in
+                if let dictionary = snapshot.value as? [String: AnyObject]{
+                    print(snapshot)
+                    let someCourse = Course()
+                    someCourse.courseID = snapshot.key
+                    someCourse.courseName = (dictionary["courseName"] as? String)!
+                    someCourse.courseCode = (dictionary["courseCode"] as? String)!
+                    someCourse.prof = (dictionary["prof"] as? String)!
+                    self.courses.append(someCourse)
+                    self.courseTable.reloadData()
+                }
+                
+            }, withCancel: nil)
+        }
     }
     
     func addCourse() {

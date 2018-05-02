@@ -14,27 +14,14 @@ class AddCourseTableViewController: UITableViewController {
     
     let ref = Database.database().reference(fromURL: "https://cram-capstone.firebaseio.com/")
     var courses = [Course]()
-    var uid: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userHandler()
         tableView.rowHeight = 90
         fetchCourses()
     }
-    
-    func userHandler(){
-        if Auth.auth().currentUser != nil{
-            let appUser = Auth.auth().currentUser
-            uid = appUser?.uid
-        }
-        else{
-            print("User is not signed in.")
-        }
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return courses.count
     }
  
@@ -56,7 +43,7 @@ class AddCourseTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             let id = self.courses[indexPath.row].courseID
-            let toBeDeleted = ref.child("users").child(uid!).child("courses").child(id!)
+            let toBeDeleted = ref.child("users").child((Auth.auth().currentUser?.uid)!).child("courses").child(id!)
             toBeDeleted.removeValue()
             self.courses.remove(at: indexPath.row)
             self.tableView.reloadData()
@@ -65,7 +52,7 @@ class AddCourseTableViewController: UITableViewController {
     
     private func fetchCourses() {
         
-        Database.database().reference().child("users").child(self.uid!).child("courses").observe(.childAdded, with: { (snapshot) in
+        Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!).child("courses").observe(.childAdded, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject]{
                 print(snapshot)
                 let someCourse = Course()
@@ -98,7 +85,7 @@ class AddCourseTableViewController: UITableViewController {
                 return
             }
             
-            let courseNameEntry = self.ref.child("users").child(self.uid!).child("courses").childByAutoId()
+            let courseNameEntry = self.ref.child("users").child((Auth.auth().currentUser?.uid)!).child("courses").childByAutoId()
             let values = ["courseName": courseName, "courseCode" : courseCode, "prof" : prof]
             courseNameEntry.updateChildValues(values) { (addCourseError, ref) in
                 if addCourseError != nil{

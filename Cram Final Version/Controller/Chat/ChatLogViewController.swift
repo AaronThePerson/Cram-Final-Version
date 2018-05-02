@@ -19,7 +19,7 @@ class ChatLogViewController: MessagesViewController {
     
     let ref = Database.database().reference(fromURL: "https://cram-capstone.firebaseio.com/")
     
-    let refreshControl = UIRefreshControl()
+    //let refreshControl = UIRefreshControl()
     var isTyping = false
     var messages: [Message] = []
     var setCurrentSender: Sender?
@@ -27,6 +27,16 @@ class ChatLogViewController: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        messagesCollectionView.messagesDataSource = self as? MessagesDataSource
+        messagesCollectionView.messagesLayoutDelegate = self as? MessagesLayoutDelegate
+        messagesCollectionView.messagesDisplayDelegate = self as? MessagesDisplayDelegate
+        messagesCollectionView.messageCellDelegate = self as? MessageCellDelegate
+        messageInputBar.delegate = self as? MessageInputBarDelegate
+        
+        self.iMessage()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         let num: Int = (selectedGroup?.members?.count)!
         for i in 0..<num{
             if selectedGroup?.members?[i].uid == Auth.auth().currentUser?.uid{
@@ -34,17 +44,7 @@ class ChatLogViewController: MessagesViewController {
                 break
             }
         }
-        
-        messagesCollectionView.messagesDataSource = self as? MessagesDataSource
-        messagesCollectionView.messagesLayoutDelegate = self as? MessagesLayoutDelegate
-        messagesCollectionView.messagesDisplayDelegate = self as? MessagesDisplayDelegate
-        messagesCollectionView.messageCellDelegate = self as? MessageCellDelegate
-        messageInputBar.delegate = self as? MessageInputBarDelegate
-        
-        messagesCollectionView.addSubview(refreshControl)
-        refreshControl.addTarget(self, action: #selector(ChatLogViewController.loadMoreMessages), for: .valueChanged)
-        
-        self.iMessage()
+        getMessages()
     }
     
     func handleSend(sender: Sender, text: String){
@@ -59,44 +59,44 @@ class ChatLogViewController: MessagesViewController {
         //ref.child("chats").child(selectedGroup?.groupID).child("messages").childByAutoId().setValuesForKeys(dict)
     }
     
-    
+    func sendMessage(text: String){
+        let messageLocation = ref.child("chats").child((selectedGroup?.groupID)!).child("messages").childByAutoId()
+        let messageToSend = Message(text: text, sender: currentSender(), messageId: messageLocation.key, date: Date())
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let timestamp = dateFormatter.string(from: messageToSend.sentDate)
+        
+        let messageValues = ["senderName": messageToSend.sender.displayName, "senderID": messageToSend.sender.id, "timestamp": timestamp, "text": text] as [String : Any]
+        let groupValue = ["timestamp": timestamp, "lastMessage": text]
+        
+        messageLocation.setValue(messageValues)
+        ref.child("groups").child((selectedGroup?.groupID)!).updateChildValues(groupValue)
+    }
     
     func getMessages(){
+        let queryMessages = ref.child("chats").child((selectedGroup?.groupID)!).child("messages").queryLimited(toLast: 50)
         
-    }
-    
-    @objc func loadMoreMessages() {
+        queryMessages.observe(.childAdded) { (snapshot) in
+            if let dictionary = snapshot.value as? [String: Any]{
+                let messageID = snapshot.key
+                let senderID = dictionary["senderID"] as! String
+                let senderName = dictionary["senderName"] as! String
+                let text = dictionary["text"] as! String
+                let timestamp = dictionary["timestamp"] as! String
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+                let date = dateFormatter.date(from: timestamp)
+                
+                let message = Message(text: text, sender: Sender(id: senderID, displayName: senderName), messageId: messageID, date: date!)
+                
+                self.messages.append(message)
+                self.messagesCollectionView.insertSections([self.messages.count - 1])
+            }
+            
+        }
         
-    }
-    
-    
-    func slack() {
-        defaultStyle()
-        messageInputBar.backgroundView.backgroundColor = .white
-        messageInputBar.isTranslucent = false
-        messageInputBar.inputTextView.backgroundColor = .clear
-        messageInputBar.inputTextView.layer.borderWidth = 0
-        let items = [
-            makeButton(named: "ic_camera").onTextViewDidChange { button, textView in
-                button.isEnabled = textView.text.isEmpty
-            },
-            .flexibleSpace,
-            makeButton(named: "ic_library").onTextViewDidChange { button, textView in
-                button.tintColor = UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1)
-                button.isEnabled = textView.text.isEmpty
-            },
-        ]
-        items.forEach { $0.tintColor = .lightGray }
-        
-        // We can change the container insets if we want
-        messageInputBar.inputTextView.textContainerInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
-        messageInputBar.inputTextView.placeholderLabelInsets = UIEdgeInsets(top: 8, left: 5, bottom: 8, right: 5)
-        
-        // Since we moved the send button to the bottom stack lets set the right stack width to 0
-        messageInputBar.setRightStackViewWidthConstant(to: 0, animated: true)
-        
-        // Finally set the items
-        messageInputBar.setStackViewItems(items, forStack: .bottom, animated: true)
     }
     
     func iMessage() {
@@ -215,13 +215,10 @@ extension ChatLogViewController: MessagesDisplayDelegate {
         return .bubbleTail(corner, .curved)
     }
     
-//    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-//        let avatar = SampleData.shared.getAvatarFor(sender: message.sender)
-//        avatarView.set(avatar: avatar)
-//    }
-    
-    // MARK: - Location Messages
-    
+    func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
+        return CGSize(width: 0, height: 0)
+    }
+
     func annotationViewForLocation(message: MessageType, at indexPath: IndexPath, in messageCollectionView: MessagesCollectionView) -> MKAnnotationView? {
         let annotationView = MKAnnotationView(annotation: nil, reuseIdentifier: nil)
         let pinImage = #imageLiteral(resourceName: "pin")
@@ -250,10 +247,6 @@ extension ChatLogViewController: MessagesDisplayDelegate {
 // MARK: - MessagesLayoutDelegate
 
 extension ChatLogViewController: MessagesLayoutDelegate {
-    
-    func avatarPosition(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> AvatarPosition {
-        return AvatarPosition(horizontal: .natural, vertical: .messageBottom)
-    }
     
     func messagePadding(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIEdgeInsets {
         if isFromCurrentSender(message: message) {
@@ -295,35 +288,13 @@ extension ChatLogViewController: MessagesLayoutDelegate {
 // MARK: - MessageCellDelegate
 
 extension ChatLogViewController: MessageCellDelegate {
-    
-    func didTapAvatar(in cell: MessageCollectionViewCell) {
-        print("Avatar tapped")
-    }
-    
     func didTapMessage(in cell: MessageCollectionViewCell) {
-        print("Message tapped")
-    }
-    
-}
-
-// MARK: - MessageLabelDelegate
-
-extension ChatLogViewController: MessageLabelDelegate {
-    
-    func didSelectAddress(_ addressComponents: [String : String]) {
-        print("Address Selected: \(addressComponents)")
-    }
-    
-    func didSelectDate(_ date: Date) {
-        print("Date Selected: \(date)")
-    }
-    
-    func didSelectPhoneNumber(_ phoneNumber: String) {
-        print("Phone Number Selected: \(phoneNumber)")
-    }
-    
-    func didSelectURL(_ url: URL) {
-        print("URL Selected: \(url)")
+        if cell.cellBottomLabel.isHidden{
+            cell.cellBottomLabel.isHidden = false
+        }
+        else{
+            cell.cellBottomLabel.isHidden = true
+        }
     }
     
 }
@@ -333,8 +304,6 @@ extension ChatLogViewController: MessageLabelDelegate {
 extension ChatLogViewController: MessageInputBarDelegate {
     
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
-        
-        // Each NSTextAttachment that contains an image will count as one empty character in the text: String
         
         for component in inputBar.inputTextView.components {
             
@@ -349,8 +318,10 @@ extension ChatLogViewController: MessageInputBarDelegate {
                 let attributedText = NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 15), .foregroundColor: UIColor.blue])
                 
                 let message = Message(attributedText: attributedText, sender: currentSender(), messageId: UUID().uuidString, date: Date())
-                messages.append(message)
-                messagesCollectionView.insertSections([messages.count - 1])
+                sendMessage(text: text)
+                
+                //messages.append(message)
+                //messagesCollectionView.insertSections([messages.count - 1])
             }
             
         }

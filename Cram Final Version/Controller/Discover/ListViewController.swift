@@ -27,6 +27,11 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Do any additional setup after loading the view.
     }
     
+    func calculateDistance(otherLocation: CLLocation)->Double{
+        let distance = otherLocation.distance(from: currentLocation)
+        return (distance/1609.34)
+    }
+    
     func resetToNil(){
         currentLocation = CLLocation()
         otherUsers = []
@@ -34,6 +39,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func resetUsersArray(){
         otherUsers = []
+        userList.reloadData()
     }
     
     func setCurrentUserLocation(userLocation: CLLocation){
@@ -41,17 +47,14 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func addUser(addedUser: User){
+        addedUser.distance = calculateDistance(otherLocation: addedUser.location!)
         otherUsers.append(addedUser)
+        otherUsers = otherUsers.sorted(by: {$0.distance! < $1.distance!})
         userList.reloadData()
     }
     
     func setCurrentUser(someUser: User){
         currentUser = someUser
-    }
-    
-    func calculateDistance(otherlocation: CLLocation) -> Double{
-        let distance = otherlocation.distance(from: currentLocation)
-        return (distance/1609.34)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,9 +69,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             fatalError("Cell could not be instantiated")
         }
         
-        
         cell.textLabel?.text = otherUsers[indexPath.row].username
-                cell.detailTextLabel?.text = String(format: "%.3f", calculateDistance(otherlocation: otherUsers[indexPath.row].location!)) + " miles"
+        cell.detailTextLabel?.text = String(format: "%.3f", otherUsers[indexPath.row].distance!) + " miles"
         cell.accessoryType = UITableViewCellAccessoryType.detailButton
         
         return cell

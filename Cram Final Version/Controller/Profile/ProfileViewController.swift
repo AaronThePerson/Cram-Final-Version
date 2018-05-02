@@ -9,13 +9,18 @@
 import UIKit
 import Firebase
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var userDescriptionField: UITextView!
+    @IBOutlet weak var profileManager: UITableView!
+    
+    let cellText = ["Manage Courses","Manage Friends", "Manage Posts", "Change Profile Picture", "Change Profile Description", "Change Major", "Change University", "Logout", "Change Username", "Change Email", "Change Password", "Delete Account"]
     
     let ref = Database.database().reference(fromURL: "https://cram-capstone.firebaseio.com/")
+    var userDescription: String?
+    
+    var changeType: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +32,6 @@ class ProfileViewController: UIViewController {
     
     func prepareUI(){
         self.navigationController?.isNavigationBarHidden = true
-        userDescriptionField.isEditable = false
         
         //Makes the profile picture pretty
         profilePic.layer.cornerRadius = 10.0
@@ -44,7 +48,8 @@ class ProfileViewController: UIViewController {
             let dictionary = snapshot.value as? [String: AnyObject]
             
             self.usernameLabel.text = dictionary!["username"]! as? String
-            self.userDescriptionField.text = dictionary!["profileDescription"]! as? String
+            
+            self.userDescription = dictionary!["profileDescription"]! as? String
             
             let profilePicURL = dictionary!["profilePicURL"]! as? String
             
@@ -64,17 +69,109 @@ class ProfileViewController: UIViewController {
         })
     }
     
-    @IBAction func manageCourses(_ sender: Any) {
-        performSegue(withIdentifier: "courseManager", sender: self)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "generalManager"{
+            let vc = segue.destination as! ProfileChangesViewController
+            vc.changeType = changeType
+        }
     }
     
-    @IBAction func logout(_ sender: Any) {
-        do{
-            try Auth.auth().signOut()
-        } catch let logoutError {
-            print(logoutError)
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0{
+            return "Manage Profile"
         }
-        performSegue(withIdentifier: "goToLogin", sender: Any?.self)
+        else if section == 1{
+            return "Manage Account"
+        }
+        else{
+            return ""
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0{
+            return 7
+        }
+        else if section == 1 {
+            return 5
+        }
+        else{
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell") as! ProfileManagerCellTableViewCell
+        
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+        
+        if indexPath.section == 0{
+            cell.textLabel?.text = cellText[indexPath.row]
+        }
+        else{
+            cell.textLabel?.text = cellText[indexPath.row+7]
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0{
+            if indexPath.row == 0{
+                performSegue(withIdentifier: "courseManager", sender: Any?.self)
+            }
+            else if indexPath.row == 1{
+                
+            }
+            else if indexPath.row == 2{
+                
+            }
+            else if indexPath.row == 3{
+                changeType = "Change Profile Picture"
+                performSegue(withIdentifier: "generalManager", sender: self)
+            }
+            else if indexPath.row == 4{
+                changeType = "Change Profile Description"
+                performSegue(withIdentifier: "generalManager", sender: self)
+            }
+            else if indexPath.row == 5{
+                changeType = "Change Major"
+                performSegue(withIdentifier: "generalManager", sender: self)
+            }
+            else if indexPath.row == 6{
+                changeType = "Change University"
+                performSegue(withIdentifier: "generalManager", sender: self)
+            }
+        }
+        else if indexPath.section == 1{
+            if indexPath.row == 0 {
+                if Auth.auth().currentUser != nil{
+                    ref.child("locations").child((Auth.auth().currentUser?.uid)!).removeValue()
+                    ref.child("user").child((Auth.auth().currentUser?.uid)!).removeAllObservers()
+                    try! Auth.auth().signOut()
+                    if let storyboard = self.storyboard{
+                        let vc = storyboard.instantiateInitialViewController()
+                        self.present(vc!, animated: false, completion: nil)
+                    }
+                }
+            }
+            else if indexPath.row == 1{
+                changeType = "Change Username"
+                performSegue(withIdentifier: "generalManager", sender: self)
+            }
+            else if indexPath.row == 2{
+                changeType = "Change Email"
+                performSegue(withIdentifier: "generalManager", sender: self)
+            }
+            else if indexPath.row == 3{
+                changeType = "Change Password"
+                performSegue(withIdentifier: "generalManager", sender: self)
+            }
+        }
     }
     
 }

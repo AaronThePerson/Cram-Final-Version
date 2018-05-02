@@ -16,6 +16,8 @@
 		F5072F322075312F00D31C59 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5072F312075312F00D31C59 /* DiscoverViewController.swift */; };
 		F5072F3820753F2000D31C59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5072F3720753F2000D31C59 /* Assets.xcassets */; };
 		F5103B56209601E300BC05F6 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5103B55209601E300BC05F6 /* Message.swift */; };
+		F511E8282097427E002DD484 /* ProfileManagerCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F511E8272097427E002DD484 /* ProfileManagerCellTableViewCell.swift */; };
+		F511E82A209779D6002DD484 /* ProfileChangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F511E829209779D6002DD484 /* ProfileChangesViewController.swift */; };
 		F517B0C120755ED3004EC6F0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F517B0BF20755ED3004EC6F0 /* MapViewController.swift */; };
 		F517B0C220755ED3004EC6F0 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F517B0C020755ED3004EC6F0 /* MapViewController.xib */; };
 		F517B0C520755EF0004EC6F0 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F517B0C320755EF0004EC6F0 /* ListViewController.swift */; };
@@ -88,6 +90,8 @@
 		F5072F3720753F2000D31C59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F5103B542095F07800BC05F6 /* Cram Final Version.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Cram Final Version.entitlements"; sourceTree = "<group>"; };
 		F5103B55209601E300BC05F6 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		F511E8272097427E002DD484 /* ProfileManagerCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManagerCellTableViewCell.swift; sourceTree = "<group>"; };
+		F511E829209779D6002DD484 /* ProfileChangesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChangesViewController.swift; sourceTree = "<group>"; };
 		F517B0BF20755ED3004EC6F0 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		F517B0C020755ED3004EC6F0 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		F517B0C320755EF0004EC6F0 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -224,6 +228,8 @@
 			isa = PBXGroup;
 			children = (
 				F5CAF53E206A9E4300BC8E39 /* ProfileViewController.swift */,
+				F511E829209779D6002DD484 /* ProfileChangesViewController.swift */,
+				F511E8272097427E002DD484 /* ProfileManagerCellTableViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -634,6 +640,7 @@
 				F558867B20715D5900830FD1 /* Post.swift in Sources */,
 				F5BD921E206B253300CF6E4A /* AddCourseTableViewController.swift in Sources */,
 				F578616D207DB37E00B21696 /* ListViewTableViewCell.swift in Sources */,
+				F511E82A209779D6002DD484 /* ProfileChangesViewController.swift in Sources */,
 				F578616A207D9B3300B21696 /* AddCourseViewController.swift in Sources */,
 				F53DB9B3206C3CF600055A16 /* AddCourseTableViewCell.swift in Sources */,
 				F5072F2C20752D4300D31C59 /* ChatLogTableViewController.swift in Sources */,
@@ -643,6 +650,7 @@
 				F531064D208FB1BC003D0C67 /* PostDetailViewController.swift in Sources */,
 				F53DB9AD206C2FD700055A16 /* User.swift in Sources */,
 				F531064B208F6E71003D0C67 /* CreatePostViewController.swift in Sources */,
+				F511E8282097427E002DD484 /* ProfileManagerCellTableViewCell.swift in Sources */,
 				F54F2BFE20863DE600DC47F9 /* ViewProfileViewController.swift in Sources */,
 				F5580681207A8C710005C3FB /* Filter.swift in Sources */,
 				F5961A0920668B73005151EA /* LoginViewController.swift in Sources */,

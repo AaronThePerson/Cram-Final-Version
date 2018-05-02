@@ -36,7 +36,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         super.viewDidLoad()
         prepareUI()
 
-        // Do any additional setup after loading the view.
     }
 
     func prepareUI(){
@@ -81,8 +80,25 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UITextViewDel
             return
         }
         else{
-            upperErrorLabel.isHidden = true
-            canSignUp = true
+            if textField.textContentType == UITextContentType.password{
+                let passwordCharacters = NSCharacterSet(charactersIn: textField.text!)
+                if ((textField.text?.count)! < 8){
+                    upperErrorLabel.text = "Passwords too short."
+                    upperErrorLabel.isHidden = false
+                    canSignUp = false
+                    return
+                }
+                else if(CharacterSet.urlPasswordAllowed.isSuperset(of: passwordCharacters as CharacterSet)){
+                    upperErrorLabel.isHidden = true
+                    canSignUp = true
+                }
+                else{
+                    upperErrorLabel.text = "Passwords contains illegal characters"
+                    upperErrorLabel.isHidden = false
+                    canSignUp = false
+                    return
+                }
+            }
         }
         
         if (usernameField.text?.contains(" "))!{

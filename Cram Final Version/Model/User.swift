@@ -18,7 +18,7 @@ class User: NSObject {
     var profilePic: UIImage?
     var courses: [Course] = []
     var location: CLLocation?
-    var distance: CLLocationDistance?
+    var distance: Double?
     var friends: [Friend] = []
     var groups: [Group] = []
  

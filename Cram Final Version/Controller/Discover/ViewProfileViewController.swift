@@ -9,9 +9,16 @@
 import UIKit
 import Firebase
 
-class ViewProfileViewController: UIViewController {
+class ViewProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet weak var uidLabel: UILabel!
+    @IBOutlet weak var profilePicImageView: UIImageView!
+    @IBOutlet weak var addFriendButton: UIButton!
+    @IBOutlet weak var chatButton: UIButton!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var profileDescriptionField: UITextView!
+    @IBOutlet weak var userCoursesTable: UITableView!
+    @IBOutlet weak var universityLabel: UILabel!
+    @IBOutlet weak var majorLabel: UILabel!
     
     var isFriended: Bool = false
     var otherUser: User?
@@ -21,9 +28,25 @@ class ViewProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        prepareUI()
+    }
+    
+    func prepareUI(){
+        profilePicImageView.layer.cornerRadius = 10.0
+        profilePicImageView.layer.masksToBounds = true
+        profilePicImageView.layer.borderWidth = 4.0
+        profilePicImageView.layer.borderColor = (UIColor.white).cgColor
         
-        uidLabel.text = otherUser?.uid
+        chatButton.layer.cornerRadius = 5
+        addFriendButton.layer.cornerRadius = 5
+        profileDescriptionField.layer.cornerRadius = 5
+        
+        usernameLabel.text = otherUser?.username
+        universityLabel.text = otherUser?.university
+        majorLabel.text = otherUser?.major
+        profileDescriptionField.text = otherUser?.profileDescription
+        checkIfFriended()
+        userCoursesTable.reloadData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -33,9 +56,17 @@ class ViewProfileViewController: UIViewController {
                 currentUser = someUser
             }
         }
-//        getProfile(givenUID: uid!) { (someUser) in
-//            otherUser = someUser
-//        }
+        if otherUser?.uid == nil{
+            getProfile(givenUID: (otherUser?.uid!)!) { (someUser) in
+                otherUser = someUser
+                prepareUI()
+            }
+        }
+        else{
+            prepareUI()
+        }
+        
+        
     }
     
     @IBAction func BackToDiscover(_ sender: Any) {
@@ -95,7 +126,12 @@ class ViewProfileViewController: UIViewController {
     }
     
     func checkIfFriended(){
-        
+        let num: Int = (currentUser?.friends.count)!
+        for i in 0..<num{
+            if currentUser?.friends[i].uid == otherUser?.uid{
+                addFriendButton.setTitle("Friended", for: UIControlState.normal)
+            }
+        }
     }
     
     @IBAction func addFriend(_ sender: Any) {
@@ -106,21 +142,45 @@ class ViewProfileViewController: UIViewController {
             if currentUser?.friends[i].uid == otherUser?.uid{
                 friended = true
                 userFoundAt = i
+                break
             }
         }
         if friended == true{
             usersRef.child((currentUser?.uid)!).child("friends").child((otherUser?.uid)!).removeValue()
             currentUser?.friends.remove(at: userFoundAt!)
-            print("unfriend")
+            addFriendButton.setTitle("Add Friend", for: UIControlState.normal)
         }
         else{
             usersRef.child((currentUser?.uid!)!).child("friends").child((otherUser?.uid)!).child("username").setValue(otherUser?.username)
             currentUser?.friends.append(Friend(uid: (otherUser?.uid)!, username: (otherUser?.username)!))
-            print("friended")
+            addFriendButton.setTitle("Friended", for: UIControlState.normal)
         }
     }
     
     @IBAction func chatWith(_ sender: Any) {
         
     }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "My Courses"
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (otherUser?.courses.count)!
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "profileCourseCell")
+        
+        cell?.textLabel?.text = otherUser?.courses[indexPath.row].courseName
+        cell?.detailTextLabel?.text = otherUser?.courses[indexPath.row].courseCode
+        
+        return cell!
+    }
+    
+    
 }

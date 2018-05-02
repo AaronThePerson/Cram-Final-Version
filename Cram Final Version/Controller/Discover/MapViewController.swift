@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreLocation
 import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
@@ -54,7 +53,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        uid = (view.annotation as! StudentPoint).uid
+        if view.reuseIdentifier == "student"{
+            uid = (view.annotation as! StudentPoint).uid
+        }
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {

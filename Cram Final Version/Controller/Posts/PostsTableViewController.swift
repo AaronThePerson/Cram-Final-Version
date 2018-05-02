@@ -33,6 +33,7 @@ class PostsTableViewController: UITableViewController, CLLocationManagerDelegate
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("page loaded")
         getPosts {
             self.tableView.reloadData()
         }

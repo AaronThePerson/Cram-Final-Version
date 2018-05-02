@@ -49,12 +49,13 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         getOtherUsers{
-            for i in 0..<self.mappableUsers.count{
-                self.mappableUsers[i].writeData()
-            }
+            
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        manager.stopUpdatingLocation()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,6 +68,8 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
     
     func setFilter(filter: Filter) {
         self.dataFilter = filter
+        getOtherUsers {
+        }
     }
     
     @IBAction func openfilter(_ sender: Any) {
@@ -76,11 +79,7 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
     @IBAction func refreshUsers(_ sender: Any) {
         listView.resetToNil()
         addUserLocation()
-        getOtherUsers {
-            for i in 0..<self.mappableUsers.count{
-                self.mappableUsers[i].writeData()
-            }
-        }
+        getOtherUsers {}
     }
     
     private func prepareDatabase(){
@@ -143,24 +142,36 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
         
         circleQuery?.observeReady{
             for i in 0..<nearbyUsers.count{
-                let filterCheck: Bool = true
+                var filterCheck: Bool = true
                 
                 self.getUserFromFirebase(uid: nearbyUsers[i].key, location: nearbyUsers[i].otherLocation,completion: { (someUser) in
                     
                     if self.dataFilter.university == true {
                         if someUser?.university != self.currentUser?.university{
-                            print("university match")
+                            filterCheck = false
                         }
                     }
                     
                     if self.dataFilter.major == true{
                         if someUser?.major != self.currentUser?.major{
-                            print("major match")
+                            filterCheck = false
                         }
                     }
                     
                     if self.dataFilter.selectedCourses?.count != 0{
-                        print("courses selected")
+                        let num: Int = (self.currentUser?.courses.count)!
+                        let someNum: Int = (someUser?.courses.count)!
+                        var matchFound: Bool = false
+                        for i in 0..<someNum{
+                            for j in 0..<num{
+                                if self.currentUser?.courses[j].courseCode == someUser?.courses[i].courseCode || self.currentUser?.courses[j].courseName == someUser?.courses[i].courseName{
+                                    matchFound = true
+                                }
+                            }
+                        }
+                        if matchFound != true{
+                            filterCheck = false
+                        }
                     }
                     if filterCheck == true{
                         self.userMapView.addUserAnnotation(someUser: someUser!)
@@ -188,7 +199,7 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
                 case "username":
                     someUser.username = data.value as? String
                 case "profileDescription":
-                    someUser.username = data.value as? String
+                    someUser.profileDescription = data.value as? String
                 case "profilePicURL": break
                 case "courses":
                     let courseSnap = data.children

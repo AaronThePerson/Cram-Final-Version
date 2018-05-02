@@ -13,6 +13,7 @@ class PostDetailViewController: UIViewController {
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var postDescriptionView: UITextView!
+    @IBOutlet weak var viewProfileButton: UIButton!
     
     var detailPost = Post()
     
@@ -23,14 +24,9 @@ class PostDetailViewController: UIViewController {
 
     func prepareUI(){
         username.text = detailPost.username
+        viewProfileButton.layer.cornerRadius = 5
         titleLabel.text = detailPost.title
         postDescriptionView.text = detailPost.postDescription
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "viewProfilePost"{
-            
-        }
     }
     
     @IBAction func viewProfile(_ sender: Any) {
