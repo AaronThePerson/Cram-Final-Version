@@ -41,7 +41,7 @@ class CreateGroupViewController: UIViewController, UITableViewDelegate, UITableV
     
     func getFriends(completion: @escaping ()->Void){
         _ = ref.child("users").child((Auth.auth().currentUser?.uid)!).child("username").observe(.value) { (snapshot) in
-            self.username = snapshot.value as! String
+            self.username = snapshot.value as? String
         }
         let friendRef = ref.child("users").child((Auth.auth().currentUser?.uid)!).child("friends")
         friendRef.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -108,7 +108,7 @@ class CreateGroupViewController: UIViewController, UITableViewDelegate, UITableV
             let groupID = ref.child("groups").childByAutoId().key
             let newGroup = Group(groupName: groupNameCheck!, groupID: groupID, members: selectedFriends)
             addGroupToFirebase(newGroup: newGroup) {
-                delegate?.reloadGroups()
+                //delegate?.reloadGroups()
                 dismiss(animated: true, completion: nil)
             }
         }

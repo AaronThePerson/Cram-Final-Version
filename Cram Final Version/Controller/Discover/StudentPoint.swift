@@ -23,6 +23,4 @@ class StudentPoint: NSObject, MKAnnotation{
         self.uid = uid
     }
     
-    
-    
 }

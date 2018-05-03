@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class PostDetailViewController: UIViewController {
 
@@ -15,11 +16,21 @@ class PostDetailViewController: UIViewController {
     @IBOutlet weak var postDescriptionView: UITextView!
     @IBOutlet weak var viewProfileButton: UIButton!
     
+    let ref = Database.database().reference(fromURL: "https://cram-capstone.firebaseio.com/")
+    
     var detailPost = Post()
+    var otherUser: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareUI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print(detailPost.uid!)
+        getUserFromFirebase(uid: detailPost.uid!) { (someUser) in
+            self.otherUser = someUser
+        }
     }
 
     func prepareUI(){
@@ -27,6 +38,60 @@ class PostDetailViewController: UIViewController {
         viewProfileButton.layer.cornerRadius = 5
         titleLabel.text = detailPost.title
         postDescriptionView.text = detailPost.postDescription
+    }
+    
+    func getUserFromFirebase(uid: String, completion: @escaping (User?)-> Void){
+        let usersRef = ref.child("users")
+        let someUser = User()
+        usersRef.child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            someUser.uid = snapshot.key
+            let snapChildren = snapshot.children
+            while let data = snapChildren.nextObject() as? DataSnapshot{
+                switch data.key{
+                case "major":
+                    someUser.major = data.value as? String
+                case "university":
+                    someUser.university = data.value as? String
+                case "username":
+                    someUser.username = data.value as? String
+                case "profileDescription":
+                    someUser.profileDescription = data.value as? String
+                case "profilePicURL": break
+                case "courses":
+                    let courseSnap = data.children
+                    while let courseKey = courseSnap.nextObject() as? DataSnapshot{
+                        let someCourse = Course()
+                        if let courseDictionary = courseKey.value as? [String: AnyObject]{
+                            someCourse.courseID = courseKey.key
+                            someCourse.courseName = courseDictionary["courseName"] as? String
+                            someCourse.courseCode = courseDictionary["courseCode"] as? String
+                            someCourse.prof = courseDictionary["prof"] as? String
+                        }
+                        someUser.courses.append(someCourse)
+                    }
+                case "friends":
+                    let friendSnap = data.children
+                    while let friendKey = friendSnap.nextObject() as? DataSnapshot{
+                        if let friendDictionary = friendKey.value as? [String: AnyObject]{
+                            let id = friendKey.key
+                            let username = friendDictionary["username"] as? String
+                            someUser.friends.append(Friend(uid: id, username: username!))
+                        }
+                    }
+                    print(someUser.friends.count)
+                default: break
+                }
+            }
+            completion(someUser)
+        }, withCancel: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "viewProfilePost"{
+            let vc = segue.destination as! ViewProfileViewController
+            vc.isFromPost = true
+            vc.otherUser = otherUser
+        }
     }
     
     @IBAction func viewProfile(_ sender: Any) {

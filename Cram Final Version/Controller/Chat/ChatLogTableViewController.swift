@@ -94,15 +94,11 @@ class ChatLogTableViewController: UITableViewController, NewGroupHandler {
         }
     }
     
-    
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return self.groups.count
     }
 
@@ -111,13 +107,32 @@ class ChatLogTableViewController: UITableViewController, NewGroupHandler {
         
         cell.textLabel?.text = groups[indexPath.row].groupName
         cell.detailTextLabel?.text = groups[indexPath.row].lastMessage
-        print(groups[indexPath.row].lastMessage)
         
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedGroup = self.groups[indexPath.row]
         performSegue(withIdentifier: "goToChatLog", sender: Any?.self)
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let groupToRemove = groups[indexPath.row]
+            print(groupToRemove.members?.count)
+            ref.child("users").child((Auth.auth().currentUser?.uid)!).child("groups").child(groupToRemove.groupID).removeValue()
+            if (groupToRemove.members?.count)! <= 1{
+                print("test")
+                ref.child("groups").child(groupToRemove.groupID).removeValue()
+                ref.child("chats").child(groupToRemove.groupID).removeValue()
+            }
+            else{
+                ref.child("groups").child(groupToRemove.groupID).child("members").child((Auth.auth().currentUser?.uid)!).removeValue()
+            }
+            
+            groups.remove(at: indexPath.row)
+            
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
 
     @IBAction func createGroup(_ sender: Any) {

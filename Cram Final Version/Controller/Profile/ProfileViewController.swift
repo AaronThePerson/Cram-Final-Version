@@ -15,7 +15,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var profileManager: UITableView!
     
-    let cellText = ["Manage Courses","Manage Friends", "Manage Posts", "Change Profile Picture", "Change Profile Description", "Change Major", "Change University", "Logout", "Change Username", "Change Email", "Change Password", "Delete Account"]
+    let cellText = ["Manage Courses","Manage Friends", "Manage Posts", "Change Profile Picture", "Change Profile Description", "Change Major", "Change University", "Logout", "Change Username", "Change Email", "Change Password"]
     
     let ref = Database.database().reference(fromURL: "https://cram-capstone.firebaseio.com/")
     var userDescription: String?
@@ -74,6 +74,18 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let vc = segue.destination as! ProfileChangesViewController
             vc.changeType = changeType
         }
+        else if segue.identifier == "changeProfileTable"{
+            let nav = segue.destination as! UINavigationController
+            let vc = nav.viewControllers[0] as! ProfileChangesTableViewController
+            
+            if changeType == "Manage Posts"{
+                nav.title = "Posts"
+            }
+            else{
+                nav.title = "Friends"
+            }
+            vc.changeType = changeType
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -83,6 +95,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0{
             return "Manage Profile"
+            
         }
         else if section == 1{
             return "Manage Account"
@@ -97,7 +110,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             return 7
         }
         else if section == 1 {
-            return 5
+            return 4
         }
         else{
             return 0
@@ -125,10 +138,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 performSegue(withIdentifier: "courseManager", sender: Any?.self)
             }
             else if indexPath.row == 1{
-                
+                changeType = "Manage Friends"
+                performSegue(withIdentifier: "changeProfileTable", sender: self)
             }
             else if indexPath.row == 2{
-                
+                changeType = "Manage Posts"
+                performSegue(withIdentifier: "changeProfileTable", sender: self)
             }
             else if indexPath.row == 3{
                 changeType = "Change Profile Picture"
@@ -173,5 +188,4 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
     }
-    
 }

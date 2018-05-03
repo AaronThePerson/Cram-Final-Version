@@ -61,7 +61,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "viewProfile") as! ViewProfileViewController
-        vc.otherUser = userProfiles[uid!]
+        vc.otherUser = userProfiles[uid!]!
         vc.currentUser = currentUser
         self.show(vc, sender: self)
     }

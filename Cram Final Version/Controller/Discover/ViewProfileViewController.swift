@@ -20,9 +20,10 @@ class ViewProfileViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var universityLabel: UILabel!
     @IBOutlet weak var majorLabel: UILabel!
     
-    var isFriended: Bool = false
+    var isFriended: Bool = false  //used to toggle friend button
+    var isFromPost: Bool = false //used to determine if
     var otherUser: User?
-    let ref = Database.database().reference(fromURL: "https://cram-capstone.firebaseio.com/")
+    let ref = Database.database().reference(fromURL: "https://cram-capstone.firebaseio.com/")  //Reference for Firebase
     let usersRef = Database.database().reference().child("users")
     var currentUser: User?
     
@@ -31,7 +32,7 @@ class ViewProfileViewController: UIViewController, UITableViewDataSource, UITabl
         prepareUI()
     }
     
-    func prepareUI(){
+    func prepareUI(){  //general UI function to setup UI
         profilePicImageView.layer.cornerRadius = 10.0
         profilePicImageView.layer.masksToBounds = true
         profilePicImageView.layer.borderWidth = 4.0
@@ -45,28 +46,55 @@ class ViewProfileViewController: UIViewController, UITableViewDataSource, UITabl
         universityLabel.text = otherUser?.university
         majorLabel.text = otherUser?.major
         profileDescriptionField.text = otherUser?.profileDescription
-        checkIfFriended()
-        userCoursesTable.reloadData()
+        if isFromPost != true{
+            checkIfFriended()
+            userCoursesTable.reloadData()
+        }
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "profileChat"{
+            let vc = segue.destination as! ChatLogViewController
+            let name = "Chat With " + (otherUser?.username)! + " & " + (currentUser?.username)!
+            let members = [Friend(uid: (otherUser?.uid)!, username: (otherUser?.username)!), Friend(uid: (currentUser?.uid)!, username: (currentUser?.username)!)]
+            let groupId = ref.child("groups").childByAutoId().key
+            let newGroup = Group(groupName: name, groupID: groupId, members: members)
+            addGroupToFirebase(newGroup: newGroup) {
+                vc.selectedGroup = newGroup
+            }
+        }
+    }
+    
+    func addGroupToFirebase(newGroup: Group, completion: ()->Void){
+        let num: Int = (newGroup.members?.count)!
+        var membersDict: [String: Any] = [:]
+        for i in 0..<num{
+            membersDict[(newGroup.members?[i].uid)!] = newGroup.members?[i].username as AnyObject
+            ref.child("users").child((newGroup.members?[i].uid)!).child("groups").child(newGroup.groupID).child("groupName").setValue(newGroup.groupName)
+        }
+        print(membersDict)
+        ref.child("groups").child(newGroup.groupID).child("groupName").setValue(newGroup.groupName)
+        ref.child("groups").child(newGroup.groupID).child("members").updateChildValues(membersDict)
+        completion()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
-
         if currentUser?.uid == nil{
             getProfile(givenUID: (Auth.auth().currentUser?.uid)!) { (someUser) in
                 currentUser = someUser
+                if otherUser?.uid == Auth.auth().currentUser?.uid{  // To handle is the user is the same
+                    chatButton.isHidden = true
+                    addFriendButton.isHidden = true
+                    prepareUI()
+                }
             }
         }
-        if otherUser?.uid == nil{
-            getProfile(givenUID: (otherUser?.uid!)!) { (someUser) in
-                otherUser = someUser
-                prepareUI()
-            }
-        }
-        else{
+        else if otherUser?.uid == Auth.auth().currentUser?.uid{  // To handle is the user is the same
+            chatButton.isHidden = true
+            addFriendButton.isHidden = true
+            print("check")
             prepareUI()
         }
-        
-        
     }
     
     @IBAction func BackToDiscover(_ sender: Any) {
@@ -158,7 +186,7 @@ class ViewProfileViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     @IBAction func chatWith(_ sender: Any) {
-        
+        performSegue(withIdentifier: "profileChat", sender: self)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

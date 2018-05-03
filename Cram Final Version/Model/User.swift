@@ -22,7 +22,7 @@ class User: NSObject {
     var friends: [Friend] = []
     var groups: [Group] = []
  
-    public func writeData(){
+    public func writeData(){  // Used to test snapshot parsing from firebase query results
         print("uid: " + uid!)
         print("username: " + username!)
         print("university: " + university!)

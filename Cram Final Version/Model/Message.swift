@@ -6,6 +6,7 @@
 //  Copyright © 2018 Aaron Speakman. All rights reserved.
 //
 //Modifies MessageKit MessageType
+//Sets up more features then are utilized
 
 import Foundation
 import MessageKit

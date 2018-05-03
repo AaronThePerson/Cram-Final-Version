@@ -5,6 +5,7 @@
 //  Created by Aaron Speakman on 3/24/18.
 //  Copyright © 2018 Aaron Speakman. All rights reserved.
 //
+//  Some app delegate functions are placed in for token registration with firebase cloud messaging
 
 import UIKit
 import UserNotifications
@@ -66,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
         let ref = Database.database().reference(fromURL: "https://cram-capstone.firebaseio.com/")
         if Auth.auth().currentUser != nil{
-            //ref.child("locations").child((Auth.auth().currentUser?.uid)!).removeValue()
+            ref.child("locations").child((Auth.auth().currentUser?.uid)!).removeValue()
             try! Auth.auth().signOut()
         }
         self.saveContext()

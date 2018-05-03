@@ -22,7 +22,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareUI()
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     func prepareUI(){
