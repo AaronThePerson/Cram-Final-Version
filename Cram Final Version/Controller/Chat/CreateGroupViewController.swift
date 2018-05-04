@@ -2,6 +2,18 @@
 //  CreateGroupViewController.swift
 //  Cram Final Version
 //
+//
+//Copyright © 2018 Aaron Speakman.
+//This program is free software: you can redistribute it and/or modify
+//it under the terms of the GNU General Public License as published by
+//the Free Software Foundation, either version 3 of the License, or
+//(at your option) any later version.
+//
+//This program is distributed in the hope that it will be useful,
+//but WITHOUT ANY WARRANTY; without even the implied warranty of
+//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//GNU General Public License for more details.
+//
 //  Created by Aaron Speakman on 4/26/18.
 //  Copyright © 2018 Aaron Speakman. All rights reserved.
 //
@@ -13,7 +25,7 @@ protocol NewGroupHandler {
     func reloadGroups()
 }
 
-class CreateGroupViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CreateGroupViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
     @IBOutlet weak var groupName: UITextField!
     @IBOutlet weak var friendsTable: UITableView!
@@ -21,7 +33,7 @@ class CreateGroupViewController: UIViewController, UITableViewDelegate, UITableV
     
     let ref = Database.database().reference(fromURL: "https://cram-capstone.firebaseio.com/")
     
-    var delegate: NewGroupHandler?
+    var delegate: NewGroupHandler?  //A handler to handle the passback when a new group is created
     
     var friends: [Friend] = []
     var selectedFriends: [Friend] = []
@@ -39,7 +51,12 @@ class CreateGroupViewController: UIViewController, UITableViewDelegate, UITableV
         
     }
     
-    func getFriends(completion: @escaping ()->Void){
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func getFriends(completion: @escaping ()->Void){  //get friends for selectionlist in popup
         _ = ref.child("users").child((Auth.auth().currentUser?.uid)!).child("username").observe(.value) { (snapshot) in
             self.username = snapshot.value as? String
         }
@@ -56,6 +73,8 @@ class CreateGroupViewController: UIViewController, UITableViewDelegate, UITableV
             completion()
         }, withCancel: nil)
     }
+    
+    //6 functions to set up tableview with selection
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -87,20 +106,19 @@ class CreateGroupViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
     }
     
-    func addGroupToFirebase(newGroup: Group, completion: ()->Void){
+    func addGroupToFirebase(newGroup: Group, completion: ()->Void){  //creates a dictionary opf members and then adds those members along with group data to firebase.
         let num: Int = (newGroup.members?.count)!
         var membersDict: [String: Any] = [:]
         for i in 0..<num{
             membersDict[(newGroup.members?[i].uid)!] = newGroup.members?[i].username as AnyObject
             ref.child("users").child((newGroup.members?[i].uid)!).child("groups").child(newGroup.groupID).child("groupName").setValue(newGroup.groupName)
         }
-        print(membersDict)
         ref.child("groups").child(newGroup.groupID).child("groupName").setValue(newGroup.groupName)
         ref.child("groups").child(newGroup.groupID).child("members").updateChildValues(membersDict)
         completion()
     }
     
-    @IBAction func Done(_ sender: Any) {
+    @IBAction func Done(_ sender: Any) {  //check some of the user inputs and if good does not
         let groupNameCheck = groupName.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         if selectedFriends.count >= 1 && groupNameCheck != ""{
             selectedFriends.append(Friend(uid: (Auth.auth().currentUser?.uid)!, username: self.username!))
@@ -122,7 +140,7 @@ class CreateGroupViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    @IBAction func Cancel(_ sender: Any) {
+    @IBAction func Cancel(_ sender: Any) {  //dismisses modal view upon cancel clicked
         dismiss(animated: true, completion: nil)
     }
     

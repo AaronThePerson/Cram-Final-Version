@@ -2,6 +2,18 @@
 //  PostDetailViewController.swift
 //  Cram Final Version
 //
+//
+//Copyright © 2018 Aaron Speakman.
+//This program is free software: you can redistribute it and/or modify
+//it under the terms of the GNU General Public License as published by
+//the Free Software Foundation, either version 3 of the License, or
+//(at your option) any later version.
+//
+//This program is distributed in the hope that it will be useful,
+//but WITHOUT ANY WARRANTY; without even the implied warranty of
+//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//GNU General Public License for more details.
+//
 //  Created by Aaron Speakman on 4/24/18.
 //  Copyright © 2018 Aaron Speakman. All rights reserved.
 //
@@ -26,8 +38,7 @@ class PostDetailViewController: UIViewController {
         prepareUI()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        print(detailPost.uid!)
+    override func viewDidAppear(_ animated: Bool) {  //load user of post
         getUserFromFirebase(uid: detailPost.uid!) { (someUser) in
             self.otherUser = someUser
         }
@@ -40,7 +51,7 @@ class PostDetailViewController: UIViewController {
         postDescriptionView.text = detailPost.postDescription
     }
     
-    func getUserFromFirebase(uid: String, completion: @escaping (User?)-> Void){
+    func getUserFromFirebase(uid: String, completion: @escaping (User?)-> Void){  //retireve user information from Firebase
         let usersRef = ref.child("users")
         let someUser = User()
         usersRef.child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -78,7 +89,6 @@ class PostDetailViewController: UIViewController {
                             someUser.friends.append(Friend(uid: id, username: username!))
                         }
                     }
-                    print(someUser.friends.count)
                 default: break
                 }
             }
@@ -86,7 +96,7 @@ class PostDetailViewController: UIViewController {
         }, withCancel: nil)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {  
         if segue.identifier == "viewProfilePost"{
             let vc = segue.destination as! ViewProfileViewController
             vc.isFromPost = true

@@ -2,6 +2,18 @@
 //  ViewProfileViewController.swift
 //  Cram Final Version
 //
+//
+//Copyright © 2018 Aaron Speakman.
+//This program is free software: you can redistribute it and/or modify
+//it under the terms of the GNU General Public License as published by
+//the Free Software Foundation, either version 3 of the License, or
+//(at your option) any later version.
+//
+//This program is distributed in the hope that it will be useful,
+//but WITHOUT ANY WARRANTY; without even the implied warranty of
+//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//GNU General Public License for more details.
+//
 //  Created by Aaron Speakman on 4/17/18.
 //  Copyright © 2018 Aaron Speakman. All rights reserved.
 //
@@ -21,7 +33,7 @@ class ViewProfileViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var majorLabel: UILabel!
     
     var isFriended: Bool = false  //used to toggle friend button
-    var isFromPost: Bool = false //used to determine if
+    var isFromPost: Bool = false //used to determine if previous view was a detailed post
     var otherUser: User?
     let ref = Database.database().reference(fromURL: "https://cram-capstone.firebaseio.com/")  //Reference for Firebase
     let usersRef = Database.database().reference().child("users")
@@ -53,14 +65,16 @@ class ViewProfileViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "profileChat"{
-            let vc = segue.destination as! ChatLogViewController
+        if segue.identifier == "goToChat"{
+            let nav = segue.destination as! UINavigationController
+            let vc = nav.viewControllers[0] as! ChatLogTableViewController
             let name = "Chat With " + (otherUser?.username)! + " & " + (currentUser?.username)!
             let members = [Friend(uid: (otherUser?.uid)!, username: (otherUser?.username)!), Friend(uid: (currentUser?.uid)!, username: (currentUser?.username)!)]
             let groupId = ref.child("groups").childByAutoId().key
             let newGroup = Group(groupName: name, groupID: groupId, members: members)
             addGroupToFirebase(newGroup: newGroup) {
                 vc.selectedGroup = newGroup
+                vc.performSegue(withIdentifier: "goToChatLog", sender: self)
             }
         }
     }
@@ -72,7 +86,6 @@ class ViewProfileViewController: UIViewController, UITableViewDataSource, UITabl
             membersDict[(newGroup.members?[i].uid)!] = newGroup.members?[i].username as AnyObject
             ref.child("users").child((newGroup.members?[i].uid)!).child("groups").child(newGroup.groupID).child("groupName").setValue(newGroup.groupName)
         }
-        print(membersDict)
         ref.child("groups").child(newGroup.groupID).child("groupName").setValue(newGroup.groupName)
         ref.child("groups").child(newGroup.groupID).child("members").updateChildValues(membersDict)
         completion()
@@ -92,7 +105,6 @@ class ViewProfileViewController: UIViewController, UITableViewDataSource, UITabl
         else if otherUser?.uid == Auth.auth().currentUser?.uid{  // To handle is the user is the same
             chatButton.isHidden = true
             addFriendButton.isHidden = true
-            print("check")
             prepareUI()
         }
     }
@@ -186,7 +198,7 @@ class ViewProfileViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     @IBAction func chatWith(_ sender: Any) {
-        performSegue(withIdentifier: "profileChat", sender: self)
+        performSegue(withIdentifier: "goToChat", sender: self)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

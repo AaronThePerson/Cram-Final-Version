@@ -2,6 +2,18 @@
 //  ListViewController.swift
 //  Cram Final Version
 //
+//Copyright © 2018 Aaron Speakman.
+//This program is free software: you can redistribute it and/or modify
+//it under the terms of the GNU General Public License as published by
+//the Free Software Foundation, either version 3 of the License, or
+//(at your option) any later version.
+//
+//This program is distributed in the hope that it will be useful,
+//but WITHOUT ANY WARRANTY; without even the implied warranty of
+//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//GNU General Public License for more details.
+//
+//
 //  Created by Aaron Speakman on 4/4/18.
 //  Copyright © 2018 Aaron Speakman. All rights reserved.
 //
@@ -24,7 +36,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         userList.dataSource = self
         let nib = UINib(nibName: "ListViewTableViewCell", bundle: nil)
         userList.register(nib, forCellReuseIdentifier: "discoveryCell")
-        // Do any additional setup after loading the view.
     }
     
     func calculateDistance(otherLocation: CLLocation)->Double{
@@ -77,7 +88,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        //performSegue(withIdentifier: "goToViewProfile", sender: Any?.self)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "viewProfile") as! ViewProfileViewController
         vc.otherUser = otherUsers[indexPath.row]

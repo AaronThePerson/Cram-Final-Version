@@ -18,7 +18,6 @@
 		F5103B56209601E300BC05F6 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5103B55209601E300BC05F6 /* Message.swift */; };
 		F511E8282097427E002DD484 /* ProfileManagerCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F511E8272097427E002DD484 /* ProfileManagerCellTableViewCell.swift */; };
 		F511E82A209779D6002DD484 /* ProfileChangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F511E829209779D6002DD484 /* ProfileChangesViewController.swift */; };
-		F512199C209AB4AB00B231E9 /* ProfileChangesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F512199B209AB4AB00B231E9 /* ProfileChangesTableViewController.swift */; };
 		F517B0C120755ED3004EC6F0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F517B0BF20755ED3004EC6F0 /* MapViewController.swift */; };
 		F517B0C220755ED3004EC6F0 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F517B0C020755ED3004EC6F0 /* MapViewController.xib */; };
 		F517B0C520755EF0004EC6F0 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F517B0C320755EF0004EC6F0 /* ListViewController.swift */; };
@@ -51,6 +50,7 @@
 		F5961A1420668B73005151EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5961A1220668B73005151EA /* LaunchScreen.storyboard */; };
 		F5961A1F20668B73005151EA /* Cram_Final_VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5961A1E20668B73005151EA /* Cram_Final_VersionTests.swift */; };
 		F5961A2A20668B73005151EA /* Cram_Final_VersionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5961A2920668B73005151EA /* Cram_Final_VersionUITests.swift */; };
+		F5B708E0209B575C00CA4B20 /* ProfileChangesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B708DF209B575C00CA4B20 /* ProfileChangesListViewController.swift */; };
 		F5BD921E206B253300CF6E4A /* AddCourseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BD921D206B253300CF6E4A /* AddCourseTableViewController.swift */; };
 		F5CAF53F206A9E4300BC8E39 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAF53E206A9E4300BC8E39 /* ProfileViewController.swift */; };
 		F5CAF547206AAA5200BC8E39 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CAF546206AAA5200BC8E39 /* SignUpViewController.swift */; };
@@ -93,7 +93,6 @@
 		F5103B55209601E300BC05F6 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		F511E8272097427E002DD484 /* ProfileManagerCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManagerCellTableViewCell.swift; sourceTree = "<group>"; };
 		F511E829209779D6002DD484 /* ProfileChangesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChangesViewController.swift; sourceTree = "<group>"; };
-		F512199B209AB4AB00B231E9 /* ProfileChangesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChangesTableViewController.swift; sourceTree = "<group>"; };
 		F517B0BF20755ED3004EC6F0 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		F517B0C020755ED3004EC6F0 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		F517B0C320755EF0004EC6F0 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +132,7 @@
 		F5961A2520668B73005151EA /* Cram Final VersionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cram Final VersionUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5961A2920668B73005151EA /* Cram_Final_VersionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cram_Final_VersionUITests.swift; sourceTree = "<group>"; };
 		F5961A2B20668B73005151EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5B708DF209B575C00CA4B20 /* ProfileChangesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileChangesListViewController.swift; sourceTree = "<group>"; };
 		F5BD921D206B253300CF6E4A /* AddCourseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseTableViewController.swift; sourceTree = "<group>"; };
 		F5CAF53E206A9E4300BC8E39 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F5CAF546206AAA5200BC8E39 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -232,7 +232,7 @@
 				F5CAF53E206A9E4300BC8E39 /* ProfileViewController.swift */,
 				F511E829209779D6002DD484 /* ProfileChangesViewController.swift */,
 				F511E8272097427E002DD484 /* ProfileManagerCellTableViewCell.swift */,
-				F512199B209AB4AB00B231E9 /* ProfileChangesTableViewController.swift */,
+				F5B708DF209B575C00CA4B20 /* ProfileChangesListViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -644,9 +644,9 @@
 				F5BD921E206B253300CF6E4A /* AddCourseTableViewController.swift in Sources */,
 				F578616D207DB37E00B21696 /* ListViewTableViewCell.swift in Sources */,
 				F511E82A209779D6002DD484 /* ProfileChangesViewController.swift in Sources */,
+				F5B708E0209B575C00CA4B20 /* ProfileChangesListViewController.swift in Sources */,
 				F578616A207D9B3300B21696 /* AddCourseViewController.swift in Sources */,
 				F53DB9B3206C3CF600055A16 /* AddCourseTableViewCell.swift in Sources */,
-				F512199C209AB4AB00B231E9 /* ProfileChangesTableViewController.swift in Sources */,
 				F5072F2C20752D4300D31C59 /* ChatLogTableViewController.swift in Sources */,
 				F517B0C120755ED3004EC6F0 /* MapViewController.swift in Sources */,
 				F5072F322075312F00D31C59 /* DiscoverViewController.swift in Sources */,

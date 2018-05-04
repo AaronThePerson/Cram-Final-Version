@@ -2,6 +2,18 @@
 //  DiscoverViewController.swift
 //  Cram Final Version
 //
+//
+//Copyright © 2018 Aaron Speakman.
+//This program is free software: you can redistribute it and/or modify
+//it under the terms of the GNU General Public License as published by
+//the Free Software Foundation, either version 3 of the License, or
+//(at your option) any later version.
+//
+//This program is distributed in the hope that it will be useful,
+//but WITHOUT ANY WARRANTY; without even the implied warranty of
+//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//GNU General Public License for more details.
+//
 //  Created by Aaron Speakman on 4/4/18.
 //  Copyright © 2018 Aaron Speakman. All rights reserved.
 //
@@ -66,7 +78,7 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
         }
     }
     
-    func setFilter(filter: Filter) {
+    func setFilter(filter: Filter) {  //required function from send filter handler
         self.dataFilter = filter
         getOtherUsers {
         }
@@ -76,7 +88,7 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
         performSegue(withIdentifier: "goToFilter", sender: Any?.self)
     }
     
-    @IBAction func refreshUsers(_ sender: Any) {
+    @IBAction func refreshUsers(_ sender: Any) {  //refresh user button pushed
         listView.resetToNil()
         addUserLocation()
         getOtherUsers {}
@@ -86,7 +98,7 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
         locationRef = GeoFire(firebaseRef: (ref.child("locations")))
     }
     
-    private func prepareLocation(){
+    private func prepareLocation(){  //prepares location manager and sets it to update firebase when a user mover 15 meters
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.distanceFilter = CLLocationDistance(exactly: 15.0)!
@@ -110,7 +122,7 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
         }
     }
     
-    private func addUserLocation(){
+    private func addUserLocation(){  //gives current location to two subviews
         userLocation = CLLocation(latitude: userCoordinates.latitude, longitude: userCoordinates.longitude)
         currentUser?.location = userLocation
         locationRef?.setLocation(userLocation, forKey: (Auth.auth().currentUser?.uid)!)
@@ -118,7 +130,7 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
         userMapView.setCurrentUserLocation(userLocation: userLocation)
     }
     
-    func getOtherUsers(completion: ()->Void){
+    func getOtherUsers(completion: ()->Void){  //gets other users and queries based on distance setting of data filter
         struct otherUser{
             var key: String
             var otherLocation: CLLocation
@@ -134,13 +146,14 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
         let circleQuery = self.locationRef?.query(at: self.userLocation, withRadius: self.miles!)
         self.userMapView.resetAnnotations()
         self.listView.resetUsersArray()
+        //query based on datafilter distance
         circleQuery?.observe(.keyEntered, with: { (key: String!, location: CLLocation!) in
             if key != Auth.auth().currentUser?.uid{
                 nearbyUsers.append(otherUser(key: key, otherLocation: location))
             }
         })
         
-        circleQuery?.observeReady{
+        circleQuery?.observeReady{  //keys returned are then queried again for more details
             for i in 0..<nearbyUsers.count{
                 var filterCheck: Bool = true
                 
@@ -183,7 +196,7 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
     completion()
 }
 
-    func getUserFromFirebase(uid: String, location: CLLocation, completion: @escaping (User?)-> Void){
+    func getUserFromFirebase(uid: String, location: CLLocation, completion: @escaping (User?)-> Void){  //gets user data and returns a modeled user
         let usersRef = ref.child("users")
         let someUser = User()
         usersRef.child(uid).observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
@@ -222,7 +235,6 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
                             someUser.friends.append(Friend(uid: id, username: username!))
                         }
                     }
-                    print(someUser.friends.count)
                 default: break
                 }
             }
@@ -230,7 +242,7 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
         }, withCancel: nil)
     }
 
-    @IBAction func switchView(_ sender: UISegmentedControl) {
+    @IBAction func switchView(_ sender: UISegmentedControl) {  //controler switching between map and list subview
         switch sender.selectedSegmentIndex {
         case 0:
             container.bringSubview(toFront: userMapView.view)
@@ -241,7 +253,7 @@ class DiscoverViewController: UIViewController, CLLocationManagerDelegate, SendF
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {  //sets up a location manager to update user location
         let span: MKCoordinateSpan = MKCoordinateSpanMake(0.01, 0.01)
         
         userCoordinates = CLLocationCoordinate2DMake(locations[0].coordinate.latitude, locations[0].coordinate.longitude)

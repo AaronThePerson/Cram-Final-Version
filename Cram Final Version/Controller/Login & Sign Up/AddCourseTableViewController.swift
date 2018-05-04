@@ -2,6 +2,18 @@
 //  AddCourseTableViewController.swift
 //  Cram Final Version
 //
+//
+//Copyright © 2018 Aaron Speakman.
+//This program is free software: you can redistribute it and/or modify
+//it under the terms of the GNU General Public License as published by
+//the Free Software Foundation, either version 3 of the License, or
+//(at your option) any later version.
+//
+//This program is distributed in the hope that it will be useful,
+//but WITHOUT ANY WARRANTY; without even the implied warranty of
+//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//GNU General Public License for more details.
+//
 //  Created by Aaron Speakman on 3/27/18.
 //  Copyright © 2018 Aaron Speakman. All rights reserved.
 //
@@ -25,7 +37,7 @@ class AddCourseTableViewController: UITableViewController {
         return courses.count
     }
  
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell { //builds a course cell
         let cellIndentifier = "AddCourseTableViewCell"
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIndentifier, for: indexPath) as? AddCourseTableViewCell else{
@@ -40,7 +52,7 @@ class AddCourseTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) { //logic to delete a cell
         if editingStyle == .delete{
             let id = self.courses[indexPath.row].courseID
             let toBeDeleted = ref.child("users").child((Auth.auth().currentUser?.uid)!).child("courses").child(id!)
@@ -50,11 +62,10 @@ class AddCourseTableViewController: UITableViewController {
         }
     }
     
-    private func fetchCourses() {
+    private func fetchCourses() { //fetches a course from the database
         
         Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!).child("courses").observe(.childAdded, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject]{
-                print(snapshot)
                 let someCourse = Course()
                 someCourse.courseID = snapshot.key
                 someCourse.courseName = (dictionary["courseName"] as? String)!
@@ -67,7 +78,7 @@ class AddCourseTableViewController: UITableViewController {
         }, withCancel: nil)
     }
     
-    func addCourse() {
+    func addCourse() { //Sets up a pop up to collect a course
         let courseCollect = UIAlertController(title: "Add Course", message: "", preferredStyle: UIAlertControllerStyle.alert)
         courseCollect.addTextField { (courseNameField) in
             courseNameField.placeholder = "Course Name"
@@ -101,12 +112,12 @@ class AddCourseTableViewController: UITableViewController {
         present(courseCollect, animated: true, completion: nil)
     }
     
-    @IBAction func addClasse(_ sender: Any) {
+    @IBAction func addClasse(_ sender: Any) { //add a course and reload
         addCourse()
         self.tableView.reloadData()
     }
     
-    @IBAction func toApp(_ sender: Any) {
+    @IBAction func toApp(_ sender: Any) {  //loads in main app
         performSegue(withIdentifier: "goToApp", sender: self)
     }
 

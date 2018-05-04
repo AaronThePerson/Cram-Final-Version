@@ -2,6 +2,18 @@
 //  SignUpViewController.swift
 //  Cram Final Version
 //
+//
+//Copyright © 2018 Aaron Speakman.
+//This program is free software: you can redistribute it and/or modify
+//it under the terms of the GNU General Public License as published by
+//the Free Software Foundation, either version 3 of the License, or
+//(at your option) any later version.
+//
+//This program is distributed in the hope that it will be useful,
+//but WITHOUT ANY WARRANTY; without even the implied warranty of
+//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//GNU General Public License for more details.
+//
 //  Created by Aaron Speakman on 3/27/18.
 //  Copyright © 2018 Aaron Speakman. All rights reserved.
 //
@@ -70,7 +82,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {  //checks for correct input from user
         scrollView.setContentOffset(CGPoint.init(x: 0, y: 0), animated: true)
         
         if (passwordField.text != reEnterPasswordField.text && passwordField.text != nil && passwordField.text != nil){
@@ -114,11 +126,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         
     }
 
-    func textViewDidBeginEditing(_ textView: UITextView) {
+    func textViewDidBeginEditing(_ textView: UITextView) {  //adjusts view based on text field selected
         scrollView.setContentOffset(CGPoint.init(x: 0, y: 550), animated: true)
     }
     
-    func textViewDidEndEditing(_ textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {  //sets up
         scrollView.setContentOffset(CGPoint.init(x: 0, y: 300), animated: true)
         if (profileDescriptionField.text != nil){
             upperErrorLabel.isHidden = true
@@ -135,7 +147,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         dismiss(animated: true, completion: nil)
     }
     
-    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {  //handler for image picker
         if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage{
             profilePic.image = editedImage
         } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage{
@@ -145,7 +157,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func selectProfilePic(_ sender: Any) {
+    @IBAction func selectProfilePic(_ sender: Any) {  //sets up and presents image picker
         let controller = UIImagePickerController()
         controller.delegate = self
         controller.sourceType = .photoLibrary
@@ -173,7 +185,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         performSegue(withIdentifier: "goBackToLogin", sender: Any?.self)
     }
     
-    @IBAction func signUp(_ sender: Any) {
+    @IBAction func signUp(_ sender: Any) {  ///attempts to create a user
         
         guard let email = emailField.text, let password = passwordField.text, let username = usernameField.text, let university = universityField.text, let major = majorField.text, let profileDescription = profileDescriptionField.text else {
             print("Not valid.")
@@ -189,7 +201,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UITextViewDel
                     return
                 }
 
-                if self.photoChanged{
+                if self.photoChanged{  //with a profile picture
                     let storageRef = Storage.storage().reference().child("profile_images").child("\(uid)profileImage.jpeg")
                     
                     if let uploadData = UIImageJPEGRepresentation(self.profilePic.image!, 0.1){
@@ -205,7 +217,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UITextViewDel
                         })
                     }
                 }
-                else{
+                else{  //without a profile picture
                      let values = ["username": username, "email": email, "university": university, "major": major, "profileDescription": profileDescription, "profilePicURL": "default"]
                     self.addUserData(uid: uid, values: values as [String : AnyObject])
                 }
@@ -216,7 +228,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         }
     }
     
-    func errorAlert(alertTitle: String, alertText: String){
+    func errorAlert(alertTitle: String, alertText: String){  //alert handler for firebase error
         let errorPopup = UIAlertController(title: alertTitle, message: alertText, preferredStyle: UIAlertControllerStyle.alert)
         errorPopup.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil))
         present(errorPopup, animated: true, completion: nil)

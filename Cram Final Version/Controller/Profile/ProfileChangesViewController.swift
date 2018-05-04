@@ -2,6 +2,18 @@
 //  ProfileChangesViewController.swift
 //  Cram Final Version
 //
+//
+//Copyright © 2018 Aaron Speakman.
+//This program is free software: you can redistribute it and/or modify
+//it under the terms of the GNU General Public License as published by
+//the Free Software Foundation, either version 3 of the License, or
+//(at your option) any later version.
+//
+//This program is distributed in the hope that it will be useful,
+//but WITHOUT ANY WARRANTY; without even the implied warranty of
+//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//GNU General Public License for more details.
+//
 //  Created by Aaron Speakman on 4/30/18.
 //  Copyright © 2018 Aaron Speakman. All rights reserved.
 //
@@ -68,12 +80,12 @@ class ProfileChangesViewController: UIViewController, UITextFieldDelegate, UITex
         }
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {  //keyboard release
         textField.resignFirstResponder()
         return true
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {  //image picker release
         dismiss(animated: true, completion: nil)
     }
     
@@ -87,8 +99,8 @@ class ProfileChangesViewController: UIViewController, UITextFieldDelegate, UITex
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func saveChanges(_ sender: Any) {
-        performSegue(withIdentifier: "backToProfile", sender: Any?.self)
+    @IBAction func saveChanges(_ sender: Any) {  //updates changes to firebase depending on changetype from previous view
+        dismiss(animated: true, completion: nil)
         if changeType == "Change Profile Picture"{
             if self.photoChanged{
                 let uid: String = (Auth.auth().currentUser?.uid)!
@@ -197,7 +209,7 @@ class ProfileChangesViewController: UIViewController, UITextFieldDelegate, UITex
     }
     
     @IBAction func BackButton(_ sender: Any) {
-        performSegue(withIdentifier: "backToProfile", sender: Any?.self)
+        dismiss(animated: true, completion: nil)
     }
     
     func errorAlert(alertTitle: String, alertText: String){

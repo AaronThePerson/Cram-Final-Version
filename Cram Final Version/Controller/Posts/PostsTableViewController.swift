@@ -2,6 +2,18 @@
 //  PostsTableViewController.swift
 //  Cram Final Version
 //
+//
+//Copyright © 2018 Aaron Speakman.
+//This program is free software: you can redistribute it and/or modify
+//it under the terms of the GNU General Public License as published by
+//the Free Software Foundation, either version 3 of the License, or
+//(at your option) any later version.
+//
+//This program is distributed in the hope that it will be useful,
+//but WITHOUT ANY WARRANTY; without even the implied warranty of
+//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//GNU General Public License for more details.
+//
 //  Created by Aaron Speakman on 4/4/18.
 //  Copyright © 2018 Aaron Speakman. All rights reserved.
 //
@@ -33,8 +45,7 @@ class PostsTableViewController: UITableViewController, CLLocationManagerDelegate
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("page loaded")
-        getPosts {
+        getPosts {  //get posts on load
             self.tableView.reloadData()
         }
     }
@@ -81,7 +92,7 @@ class PostsTableViewController: UITableViewController, CLLocationManagerDelegate
         }
     }
     
-    func getPosts(completion: @escaping ()->Void){
+    func getPosts(completion: @escaping ()->Void){  //gets posts within 15 miles
         
         var keys: [String] = []
         posts = [] //clear posts
@@ -94,7 +105,7 @@ class PostsTableViewController: UITableViewController, CLLocationManagerDelegate
         
         circleQuery?.observeReady {
             for i in 0..<keys.count{
-                getPostfromFirebase(key: keys[i], completion: { (somePost) in
+                self.getPostfromFirebase(key: keys[i], completion: { (somePost) in
                     self.posts.append(somePost!)
                     self.posts = self.posts.sorted(by: {$0.timeStamp! > $1.timeStamp!})
                     self.tableView.reloadData()
@@ -103,20 +114,21 @@ class PostsTableViewController: UITableViewController, CLLocationManagerDelegate
             completion()
         }
         
-        func getPostfromFirebase(key: String, completion: @escaping (Post?)-> Void){
-            self.ref?.child("posts").child(key).observe(DataEventType.value, with: { (snapshot) in
-                let somePost = Post()
-                if let dictionary = snapshot.value as? [String: AnyObject]{
-                    somePost.postID = snapshot.key
-                    somePost.title = dictionary["title"] as? String
-                    somePost.uid = dictionary["uid"] as? String
-                    somePost.username = dictionary["username"] as? String
-                    somePost.postDescription = dictionary["description"] as? String
-                    somePost.timeStamp = Int64((dictionary["timestamp"] as! Int64))
-                }
-                completion(somePost)
-            }, withCancel: nil)
-        }
+    }
+    
+    func getPostfromFirebase(key: String, completion: @escaping (Post?)-> Void){  //given a key retrieves post
+        self.ref?.child("posts").child(key).observe(DataEventType.value, with: { (snapshot) in
+            let somePost = Post()
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                somePost.postID = snapshot.key
+                somePost.title = dictionary["title"] as? String
+                somePost.uid = dictionary["uid"] as? String
+                somePost.username = dictionary["username"] as? String
+                somePost.postDescription = dictionary["description"] as? String
+                somePost.timeStamp = Int64((dictionary["timestamp"] as! Int64))
+            }
+            completion(somePost)
+        }, withCancel: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -131,7 +143,7 @@ class PostsTableViewController: UITableViewController, CLLocationManagerDelegate
         }
     }
     
-    @IBAction func createPost(_ sender: Any) {
+    @IBAction func createPost(_ sender: Any) {  //builds a post model
         performSegue(withIdentifier: "createPost", sender: Any?.self)
     }
     
@@ -154,7 +166,7 @@ class PostsTableViewController: UITableViewController, CLLocationManagerDelegate
         return posts.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell { //presents the post in a cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! PostsTableViewCell
         
         cell.titleLabel.text = posts[indexPath.row].title
@@ -167,6 +179,5 @@ class PostsTableViewController: UITableViewController, CLLocationManagerDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedPost = posts[indexPath.row]
         performSegue(withIdentifier: "postDetails", sender: Any?.self)
-        
     }
 }

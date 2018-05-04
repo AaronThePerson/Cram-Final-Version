@@ -2,6 +2,18 @@
 //  CreatePostViewController.swift
 //  Cram Final Version
 //
+//
+//Copyright © 2018 Aaron Speakman.
+//This program is free software: you can redistribute it and/or modify
+//it under the terms of the GNU General Public License as published by
+//the Free Software Foundation, either version 3 of the License, or
+//(at your option) any later version.
+//
+//This program is distributed in the hope that it will be useful,
+//but WITHOUT ANY WARRANTY; without even the implied warranty of
+//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//GNU General Public License for more details.
+//
 //  Created by Aaron Speakman on 4/24/18.
 //  Copyright © 2018 Aaron Speakman. All rights reserved.
 //
@@ -16,7 +28,7 @@ extension Date { //Used to timestamp posts
     }
 }
 
-class CreatePostViewController: UIViewController {
+class CreatePostViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var createWindow: UIView!
     @IBOutlet weak var titleField: UITextField!
@@ -34,6 +46,9 @@ class CreatePostViewController: UIViewController {
         prepareDatabase()
         prepareUI()
     }
+    @IBAction func cancelBtn(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
@@ -50,7 +65,12 @@ class CreatePostViewController: UIViewController {
         descriptionField.text = ""
     }
     
-    @IBAction func createPost(_ sender: Any) {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    @IBAction func createPost(_ sender: Any) {  //submit a post to Firebase
         
         let postRef = ref?.child("posts")
         let postKey = ref?.childByAutoId().key
@@ -67,7 +87,6 @@ class CreatePostViewController: UIViewController {
             }
         })
         ref?.child("users").child((Auth.auth().currentUser?.uid)!).child("posts").child(postKey!).child("title").setValue(title)
-        print(postKey!)
 
         locationRef?.setLocation(location, forKey: postKey!)
         

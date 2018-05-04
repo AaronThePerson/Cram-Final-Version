@@ -2,6 +2,18 @@
 //  AddCourseViewController.swift
 //  Cram Final Version
 //
+//
+//Copyright © 2018 Aaron Speakman.
+//This program is free software: you can redistribute it and/or modify
+//it under the terms of the GNU General Public License as published by
+//the Free Software Foundation, either version 3 of the License, or
+//(at your option) any later version.
+//
+//This program is distributed in the hope that it will be useful,
+//but WITHOUT ANY WARRANTY; without even the implied warranty of
+//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//GNU General Public License for more details.
+//
 //  Created by Aaron Speakman on 4/10/18.
 //  Copyright © 2018 Aaron Speakman. All rights reserved.
 //
@@ -24,7 +36,7 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
         fetchCourses()
     }
     
-    func userHandler(){
+    func userHandler(){  //check if user is signed in
         if Auth.auth().currentUser != nil{
             let appUser = Auth.auth().currentUser
             uid = appUser?.uid
@@ -35,7 +47,6 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return courses.count
     }
     
@@ -64,11 +75,10 @@ class AddCourseViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    private func fetchCourses() {
+    private func fetchCourses() {  //get courses from firebase
         if Auth.auth().currentUser != nil{
             ref.child("users").child(self.uid!).child("courses").observe(.childAdded, with: { (snapshot) in
                 if let dictionary = snapshot.value as? [String: AnyObject]{
-                    print(snapshot)
                     let someCourse = Course()
                     someCourse.courseID = snapshot.key
                     someCourse.courseName = (dictionary["courseName"] as? String)!

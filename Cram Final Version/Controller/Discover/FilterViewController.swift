@@ -2,6 +2,18 @@
 //  FilterViewController.swift
 //  Cram Final Version
 //
+//
+//Copyright © 2018 Aaron Speakman.
+//This program is free software: you can redistribute it and/or modify
+//it under the terms of the GNU General Public License as published by
+//the Free Software Foundation, either version 3 of the License, or
+//(at your option) any later version.
+//
+//This program is distributed in the hope that it will be useful,
+//but WITHOUT ANY WARRANTY; without even the implied warranty of
+//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//GNU General Public License for more details.
+//
 //  Created by Aaron Speakman on 4/8/18.
 //  Copyright © 2018 Aaron Speakman. All rights reserved.
 //
@@ -42,7 +54,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         milesLabel.text =  String(Int(distanceSlide.value)) + " miles"
     }
     
-    func prepareFilter(){
+    func prepareFilter(){  //loads in previous data filters state
         distanceSlide.value = Float(dataFilter.distance!)
         milesLabel.text =  String(Int(distanceSlide.value)) + " miles"
         if dataFilter.university == true{
@@ -59,7 +71,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    func getUserData(){
+    func getUserData(){  //get some course data from Firebase
         Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!).child("courses").observe(.childAdded, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject]{
                 let someCourse = Course()
@@ -83,7 +95,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    @IBAction func toggleMajor(_ sender: Any) {
+    @IBAction func toggleMajor(_ sender: Any) {  //
         if majorSwitch.isOn == true{
             dataFilter.major = true
         }
@@ -91,6 +103,8 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             dataFilter.major = false
         }
     }
+    
+    //next five functions set up table view of courses
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -125,11 +139,11 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         selectedCourses.remove(at: courseIndex!)
     }
     
-    @IBAction func distanceChanged(_ sender: Any) {
+    @IBAction func distanceChanged(_ sender: Any) {  //called when the slider moves
         milesLabel.text =  String(Int(distanceSlide.value)) + " miles"
     }
     
-    @IBAction func resetPushed(_ sender: Any) {
+    @IBAction func resetPushed(_ sender: Any) {  //resets data filter to default
         distanceSlide.value = 5
         universitySwitch.isOn = false
         majorSwitch.isOn = false
@@ -141,7 +155,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         dataFilter.selectedCourses = [Course]()
     }
     
-    @IBAction func doneFiltering(_ sender: Any) {
+    @IBAction func doneFiltering(_ sender: Any) {  //handles sending the data filter back to previous view
         dataFilter.distance = Int(distanceSlide.value)
         dataFilter.selectedCourses = selectedCourses
         

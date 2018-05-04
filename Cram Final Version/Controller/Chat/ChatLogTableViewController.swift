@@ -2,6 +2,18 @@
 //  ChatLogTableViewController.swift
 //  Cram Final Version
 //
+//
+//Copyright © 2018 Aaron Speakman.
+//This program is free software: you can redistribute it and/or modify
+//it under the terms of the GNU General Public License as published by
+//the Free Software Foundation, either version 3 of the License, or
+//(at your option) any later version.
+//
+//This program is distributed in the hope that it will be useful,
+//but WITHOUT ANY WARRANTY; without even the implied warranty of
+//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//GNU General Public License for more details.
+//
 //  Created by Aaron Speakman on 4/4/18.
 //  Copyright © 2018 Aaron Speakman. All rights reserved.
 //
@@ -18,14 +30,13 @@ class ChatLogTableViewController: UITableViewController, NewGroupHandler {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         reloadGroups()
     }
     
-    func reloadGroups() {
+    func reloadGroups() {  //get groups from Firebase
         groups = []
         getUserGroups{
             let num: Int = self.groups.count
@@ -35,11 +46,10 @@ class ChatLogTableViewController: UITableViewController, NewGroupHandler {
                     self.tableView.reloadData()
                 })
             }
-            //self.tableView.reloadData()
         }
     }
 
-    func getUserGroups(completion: @escaping ()->Void){
+    func getUserGroups(completion: @escaping ()->Void){  //gets groups a user has
         ref.child("users").child((Auth.auth().currentUser?.uid)!).child("groups").observe(.value, with: { (snapshot) in
             let snapGroups = snapshot.children
             while let groupKey = snapGroups.nextObject() as? DataSnapshot{
@@ -53,7 +63,7 @@ class ChatLogTableViewController: UITableViewController, NewGroupHandler {
         }, withCancel: nil)
     }
     
-    func getGroupData(groupID: String, groupNumber: Int, completion: @escaping (Group)->Void){
+    func getGroupData(groupID: String, groupNumber: Int, completion: @escaping (Group)->Void){ //get data for a group
         ref.child("groups").child(groupID).observeSingleEvent(of: .value) { (snapshot) in
             
             var groupName: String = ""
@@ -94,6 +104,8 @@ class ChatLogTableViewController: UITableViewController, NewGroupHandler {
         }
     }
     
+    //for functions to handle general table view set up
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -118,10 +130,8 @@ class ChatLogTableViewController: UITableViewController, NewGroupHandler {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let groupToRemove = groups[indexPath.row]
-            print(groupToRemove.members?.count)
             ref.child("users").child((Auth.auth().currentUser?.uid)!).child("groups").child(groupToRemove.groupID).removeValue()
             if (groupToRemove.members?.count)! <= 1{
-                print("test")
                 ref.child("groups").child(groupToRemove.groupID).removeValue()
                 ref.child("chats").child(groupToRemove.groupID).removeValue()
             }
@@ -132,6 +142,7 @@ class ChatLogTableViewController: UITableViewController, NewGroupHandler {
             groups.remove(at: indexPath.row)
             
             tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
         }
     }
 
@@ -139,7 +150,8 @@ class ChatLogTableViewController: UITableViewController, NewGroupHandler {
         performSegue(withIdentifier: "showCreateGroup", sender: Any?.self)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {  //called before the app segues to another view
+        
         if segue.identifier == "showCreateGroup"{
             let vc = segue.destination as! CreateGroupViewController
             vc.delegate = self

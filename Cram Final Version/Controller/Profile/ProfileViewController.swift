@@ -2,6 +2,18 @@
 //  ProfileViewController.swift
 //  Cram Final Version
 //
+//
+//Copyright © 2018 Aaron Speakman.
+//This program is free software: you can redistribute it and/or modify
+//it under the terms of the GNU General Public License as published by
+//the Free Software Foundation, either version 3 of the License, or
+//(at your option) any later version.
+//
+//This program is distributed in the hope that it will be useful,
+//but WITHOUT ANY WARRANTY; without even the implied warranty of
+//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//GNU General Public License for more details.
+//
 //  Created by Aaron Speakman on 3/27/18.
 //  Copyright © 2018 Aaron Speakman. All rights reserved.
 //
@@ -40,7 +52,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         profilePic.layer.borderColor = (UIColor.white).cgColor
     }
     
-    func retrieveUser(){
+    func retrieveUser(){  //retrieve necerssary user data from firebase
         guard let uid = Auth.auth().currentUser?.uid else{
             return
         }
@@ -75,14 +87,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             vc.changeType = changeType
         }
         else if segue.identifier == "changeProfileTable"{
-            let nav = segue.destination as! UINavigationController
-            let vc = nav.viewControllers[0] as! ProfileChangesTableViewController
+            let vc = segue.destination as! ProfileChangesListViewController
             
             if changeType == "Manage Posts"{
-                nav.title = "Posts"
+                vc.changeType = "Manage Posts"
             }
             else{
-                nav.title = "Friends"
+                vc.changeType = "Manage Posts"
             }
             vc.changeType = changeType
         }
@@ -132,7 +143,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {  //logic to send to modification view controllers
+        self.profileManager.deselectRow(at: indexPath, animated: false)
         if indexPath.section == 0{
             if indexPath.row == 0{
                 performSegue(withIdentifier: "courseManager", sender: Any?.self)
