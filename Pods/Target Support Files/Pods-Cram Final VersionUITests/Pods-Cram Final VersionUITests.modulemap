@@ -1,0 +1,6 @@
+framework module Pods_Cram_Final_VersionUITests {
+  umbrella header "Pods-Cram Final VersionUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
